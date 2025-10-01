@@ -51,15 +51,25 @@ Chosen API:
 TMDB (The Movie DataBase)
 (https://developer.themoviedb.org/reference/intro/getting-started)
 
-- Name:
+- Name: The Movie Database API (TMDB)
 
 - Description:
+  The TMDb API is a free developer API from The Movie Database (TMDb) that provides programmatic access to a comprehensive dataset of movies, TV shows, and celebrities.
 
 - Link to API URL:
 
-- Link to Documentation:
+- Link to Documentation: https://developer.themoviedb.org/reference/intro/getting-started
 
 - API Key:
+  Robert:
+  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNzBkNzg2ZTg5YmRhMjg2MjM2YTYyYjc5MmVkMzQ1MiIsIm5iZiI6MTc1NzI3NDMwMS41Mzc5OTk5LCJzdWIiOiI2OGJkZTBiZDIxZmZhZDBmYjM5OGJjYTUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Ws0ilcC4hs6-VK-KGxVHpXVVAsPEn49hbQnIs_w3Tl4
+
+Aiden:
+
+Rene:
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZDEyOGViZWFkNmFkNzE4OTc1OGY0MzZiZjU1MWEyZCIsIm5iZiI6MTc1NDgzNDY1MS4wMjksInN1YiI6IjY4OThhNmRiMjQxNjJmZDU5YjkyZWY0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vGpT23kzAWXLeBsH5Wo8Dw5dqtfFYr6sTCuCL0HiSpg
+
+Mandre:
 
 - Necessary Information of HTTP Headers:
 
