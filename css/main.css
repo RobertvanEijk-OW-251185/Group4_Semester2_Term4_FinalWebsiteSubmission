@@ -1,0 +1,99 @@
+/* Fonts/Typefaces */
+
+/* Reusables */
+/* Variables */
+:root {
+	/* background colours */
+	--primary-bg-color: #141414;
+	--dark-gray: #1f1f1f;
+	--slate-gray: #3d3d3d;
+	/* text colours */
+	--primary-text: #ffffff;
+	/* Button colours */
+	--primary-blue: #3a86ff;
+}
+
+/* <p>, <h1>, <h2>, <h3> */
+h1 {
+	color: var(--primary-text);
+	font-size: 2.5rem;
+}
+
+/* SignIn/SignUp Page Css */
+body {
+	background-color: var(--primary-bg-color);
+}
+
+.navbar {
+	background-color: var(--dark-gray);
+}
+
+#homePage,
+#library,
+#watchList {
+	color: var(--primary-text);
+}
+
+.navbar-brand {
+	color: var(--primary-text);
+}
+
+.active {
+	color: var(--primary-blue) !important;
+}
+
+.innerNav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.searchInput {
+	width: 30vw;
+	gap: 0.5vw;
+	/* background-color: var(--slate-gray); */
+
+	margin-left: 1000px;
+}
+
+.form-control {
+	background-color: var(--slate-gray);
+	color: var(--primary-text);
+	border: none;
+}
+
+#searchBar {
+	color: var(--primary-blue) !important;
+
+	margin-left: 1000px;
+}
+
+/* Main Content */
+
+.heroImageCarousel {
+	width: 100%;
+	height: 70vh;
+
+	background-color: var(--slate-gray);
+	border: 1px solid blue;
+}
+
+.carousel-item {
+	height: 70vh;
+}
+
+.welcome {
+	color: var(--primary-text);
+
+	margin-left: 2vw;
+}
+
+.welcomeBackBanner {
+	width: 100%;
+	height: 10vh;
+
+	border: 1px solid red;
+
+	display: flex;
+	align-items: center;
+}
