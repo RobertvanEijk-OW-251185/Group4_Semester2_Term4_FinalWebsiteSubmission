@@ -97,3 +97,18 @@ body {
 	display: flex;
 	align-items: center;
 }
+
+/* footer */
+footer {
+	background-color: var(--dark-gray);
+	color: var(--primary-text);
+	height: 20vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.link {
+	list-style: none;
+}
