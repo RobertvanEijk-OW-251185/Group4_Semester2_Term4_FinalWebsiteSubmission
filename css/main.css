@@ -49,7 +49,6 @@ body {
 }
 
 .searchInput {
-	width: 30vw;
 	gap: 0.5vw;
 	/* background-color: var(--slate-gray); */
 
@@ -63,9 +62,13 @@ body {
 }
 
 #searchBar {
-	color: var(--primary-blue) !important;
+	width: 30vw !important;
 
-	margin-left: 1000px;
+	/* display: flex !important;
+	align-items: center !important;
+	justify-content: center !important; */
+	margin-left: 30vw !important;
+	/* margin-right: auto !important; */
 }
 
 /* Main Content */
@@ -96,6 +99,16 @@ body {
 
 	display: flex;
 	align-items: center;
+}
+
+.new_releases_section {
+	margin-top: 2vh;
+	margin-bottom: 2vh;
+}
+
+.card {
+	margin-left: 4vw;
+	margin-bottom: 2vh;
 }
 
 /* footer */
