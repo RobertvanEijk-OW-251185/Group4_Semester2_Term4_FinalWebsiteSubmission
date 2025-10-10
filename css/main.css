@@ -1,0 +1,130 @@
+.body{
+    background-color: #000;
+}
+
+.NavFlex{
+    margin-top: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    margin-right: 0px;
+    opacity: 80%;
+    background-color: #8f0000;
+    height: 100px;
+
+
+    display: flex;
+    justify-content:space-between ; 
+    align-items: center;
+    justify-content: center;
+    
+    }  
+
+.NavFlex a {padding: 0 40px;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+    opacity: 100%;
+  
+}
+
+.col{
+  color: gray;
+  opacity: .7;
+
+  display: flex;
+  flex-direction: column;
+ }
+
+
+.genreheading{
+    color: #fff;
+}
+
+ .cardcontainer {
+    display: flex;
+    flex-direction: row ;
+    flex-wrap: wrap;
+     gap: 20px;
+}
+
+.card{
+    flex: 0 0 auto;      
+    width: 250px;        
+    height: 600px;       
+    background-color: #eee;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carousel{
+    overflow-x: auto;
+    width: 100%;
+    gap: 20px;
+    display:flex;
+    gap: 1em;
+    scroll-behavior: smooth;
+    anchor-name: --carousel ;
+}
+.carousel::-webkit-scrollbar{
+    display: none;
+}
+.carousel::scroll-button(right), .carousel::scroll-button(left){
+ content: '>';   
+ border: none;
+ background-color: #000;
+ color: #fff;
+ height: 50px;
+ width: 50px;
+ border-radius: 50%;
+ padding-bottom: .1em;
+ cursor: pointer;
+ position: fixed;
+ position-anchor: --carousel;
+ opacity: 70%;
+ position-area: right center;
+ translate: -100%;
+}
+.carousel::scroll-button(left){
+ content: '<';  
+ position-area: left center;
+ translate: 100%;
+  
+}
+
+
+
+.cardimg{
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+.btn-primary{
+text-decoration: none;
+background-color: #8f0000;
+width: 250px;
+height: 50px;
+color: aliceblue;
+display: flex;
+flex-direction: column;
+margin-top: auto;
+justify-content: center;
+justify-items: center;
+}
+
+
+.movietitle{
+color: #fff;
+text-decoration: underline;
+    display: flex;
+    justify-content: center;
+}
+.movieinfo{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
