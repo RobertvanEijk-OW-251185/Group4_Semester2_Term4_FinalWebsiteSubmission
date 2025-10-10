@@ -20,7 +20,7 @@
 			name="keywords"
 			content="HTML, CSS, JavaScript, PHP, js, css, Name_Surname_StudentNumber" />
 
-		<title>Template</title>
+		<title>Homepage</title>
 
 		<!-- Font Links -->
 
@@ -36,43 +36,28 @@
 	</head>
 
 	<body>
+		<section>
+			<div class="background-container">
+				<div class="background-overlay"></div>
+				<div class="background-pattern"></div>
+			</div>
+		</section>
 		<!-- Navbar -->
 		<header>
-			<nav class="navbar navbar-expand-lg">
-				<div class="container-fluid d-flex innerNav">
-					<a class="navbar-brand" href="#">Logo</a>
-					<form class="d-flex mx-auto searchInput" role="search">
+			<nav class="navbar navbar-expand-lg navBack">
+				<div class="container-fluid position-relative">
+					<a class="navbar-brand" href="./index.html">Navbar</a>
+					<form
+						class="d-flex position-absolute top-40 start-50 translate-middle-x"
+						role="search"
+						style="width: 40%; max-width: 600px">
 						<input
-							class="form-control mx-auto"
-							id="searchBar"
+							class="form-control me-2 w-100 navLooks"
 							type="search"
 							placeholder="Search"
 							aria-label="Search" />
-						<button class="btn btn-outline-success" type="submit">
-							Search
-						</button>
+						<button class="btn searchBtnVisual" type="submit">Search</button>
 					</form>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav collapse navbar-collapse justify-content-end">
-							<li class="nav-item">
-								<a
-									class="nav-link active"
-									id="homePage"
-									aria-current="page"
-									href="#"
-									>Home</a
-								>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="library" aria-current="page" href="#"
-									>Library</a
-								>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="watchList" href="#">Watch List</a>
-							</li>
-						</ul>
-					</div>
 					<button
 						class="navbar-toggler"
 						type="button"
@@ -83,6 +68,30 @@
 						aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
+					<div
+						class="collapse navbar-collapse justify-content-end"
+						id="navbarSupportedContent">
+						<ul class="navbar-nav mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" href="./index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./pages/(c)movieLibraryPage.html"
+									>Movies</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./pages/(e)movieWatchlistPage.html"
+									>Watch List</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./pages/(a)signIn-signUp.html"
+									>Sign In</a
+								>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</nav>
 		</header>
@@ -160,132 +169,145 @@
 		</section>
 		<!-- Welcome Back Banner -->
 		<section class="welcomeBackBanner">
-			<h1 class="welcome">Welcome Back *Username*!!</h1>
+			<h1 class="welcome col-md-8 mx-auto" id="welcomeUser">
+				Welcome My Guest!!
+			</h1>
 		</section>
 		<!-- Top Rated -->
-		<section class="new_releases_section">
-			<div class="newRealeses">
-				<div class="newReleasesTitle">
-					<h1>Top Rated</h1>
-				</div>
-				<div class="row newRealeses">
-					<div class="card" style="width: 18rem">
-						<img src="..." class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up
-								the bulk of the card’s content.
-							</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+		<section class="topRated">
+			<div class="container">
+				<div class="row">
+					<h2 class="sectionTitle">Top Rated</h2>
+
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
 						</div>
 					</div>
-					<div class="card" style="width: 18rem">
-						<img src="..." class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up
-								the bulk of the card’s content.
-							</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
 						</div>
 					</div>
-					<div class="card" style="width: 18rem">
-						<img src="..." class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up
-								the bulk of the card’s content.
-							</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
 						</div>
 					</div>
-					<div class="card" style="width: 18rem">
-						<img src="..." class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up
-								the bulk of the card’s content.
-							</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-					<div class="card" style="width: 18rem">
-						<img src="..." class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up
-								the bulk of the card’s content.
-							</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!-- Popular -->
-		<section class="popular">
-			<div class="newReleasesTitle">
-				<h1>Most Popular</h1>
-			</div>
-			<div class="row">
-				<div class="card" style="width: 18rem">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">
-							Some quick example text to build on the card title and make up the
-							bulk of the card’s content.
-						</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+
+		<!-- New Releases -->
+		<section class="newReleases">
+			<div class="container">
+				<div class="row">
+					<h2 class="sectionTitle">New Releases</h2>
+
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="card" style="width: 18rem">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">
-							Some quick example text to build on the card title and make up the
-							bulk of the card’s content.
-						</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="card" style="width: 18rem">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">
-							Some quick example text to build on the card title and make up the
-							bulk of the card’s content.
-						</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="card" style="width: 18rem">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">
-							Some quick example text to build on the card title and make up the
-							bulk of the card’s content.
-						</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">
-							Some quick example text to build on the card title and make up the
-							bulk of the card’s content.
-						</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div class="col-md-3">
+						<div class="card movieCard">
+							<img
+								src="https://via.placeholder.com/300x450"
+								class="card-img-top"
+								alt="Movie Poster" />
+							<div class="card-body">
+								<h5 class="card-title">Movie Title</h5>
+								<p class="card-text">Short description of the movie.</p>
+								<a href="#" class="btn btn-primary viewDetailsBtn"
+									>View Details</a
+								>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -306,6 +328,8 @@
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
 			crossorigin="anonymous"></script>
+		<!-- jQuery script link -->
+		<script src="../js/jQuery.js"></script>
 		<!-- JS Script Link -->
 		<script src="./js/script.js"></script>
 	</body>
