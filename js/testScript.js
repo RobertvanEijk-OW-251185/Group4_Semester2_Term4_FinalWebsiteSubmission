@@ -31,9 +31,6 @@ if (document.getElementById('movieCards_Action') ||
     document.getElementById('watchlistContainer')) {
     
     !async function () {
-        // Show loading state
-        console.log('Loading movie data...');
-        
         const options = {
             method: 'GET',
             headers: {
@@ -42,14 +39,10 @@ if (document.getElementById('movieCards_Action') ||
             }
         };
 
-        let data;
-        try {
-            data = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-                .then(response => response.json());
-        } catch (err) {
-            console.error('Failed to fetch movie data:', err);
-            return;
-        }
+        let data = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+            .then(response => response.json())
+            .then((result) => { return result })
+            .catch(err => console.error(err));
 
         const Genre = {
             method: 'GET',
@@ -59,14 +52,10 @@ if (document.getElementById('movieCards_Action') ||
             }
         };
 
-        let genredata;
-        try {
-            genredata = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', Genre)
-                .then(response => response.json());
-        } catch (err) {
-            console.error('Failed to fetch genre data:', err);
-            return;
-        }
+        let genredata = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', Genre)
+            .then(response => response.json())
+            .then((result) => { return result })
+            .catch(err => console.error(err));
 
         let movielist = [];
 
@@ -92,12 +81,6 @@ if (document.getElementById('movieCards_Action') ||
 
         // Individual Movie Page Logic
         if (window.location.pathname.includes('individualMoviePage.html')) {
-            // Check if required elements exist
-            if (!document.getElementById('movieTitle')) {
-                console.warn('Individual movie page elements not found');
-                return;
-            }
-            
             const urlParams = new URLSearchParams(window.location.search);
             const movieId = urlParams.get('id');
 
@@ -121,7 +104,7 @@ if (document.getElementById('movieCards_Action') ||
                     document.getElementById('movieYear').textContent = movie.release_date;
 
                 } catch (err) {
-                    console.error('Failed to fetch movie details:', err);
+                    console.error(err);
                 }
             };
 
@@ -202,8 +185,6 @@ if (document.getElementById('movieCards_Action') ||
                 });
             }
         }
-        
-        console.log('Movie data loading complete');
     }();
 }
 
