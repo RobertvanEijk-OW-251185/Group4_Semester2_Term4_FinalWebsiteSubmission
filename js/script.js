@@ -400,7 +400,7 @@ $(document).ready(function () {
 		}
 	}
 
-	// Home Page: Display users name after sign in/sign up
+	// // Home Page: Display users name after sign in/sign up
 	// const currentPage = window.location.pathname;
 	// if (currentPage.includes("index.html")) {
 	// 	const currentUser = localStorage.getItem("moviesCurrentUser");
@@ -540,45 +540,45 @@ $(document).ready(function () {
 
 // Home Page: Popular section
 
-// !(async function () {
-// 	const url =
-// 		"https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
-// 	const options = {
-// 		method: "GET",
-// 		headers: {
-// 			accept: "application/json",
-// 			Authorization:
-// 				"Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
-// 		},
-// 	};
-// 	const response = await fetch(url, options);
-// 	const data = await response.json();
+!(async function () {
+	const url =
+		"https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+	const options = {
+		method: "GET",
+		headers: {
+			accept: "application/json",
+			Authorization:
+				"Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+		},
+	};
+	const response = await fetch(url, options);
+	const data = await response.json();
 
-// 	console.log(data);
+	console.log(data);
 
-// 	const topRated = data.results.slice(0, 4);
+	const topRated = data.results.slice(0, 4);
 
-// 	console.log(topRated);
+	console.log(topRated);
 
-// 	const topRatedPosters = topRated
-// 		.filter((movie) => movie.poster_path)
-// 		.map((movie) => `https://image.tmdb.org/t/p/original${movie.poster_path}`);
+	const topRatedPosters = topRated
+		.filter((movie) => movie.poster_path)
+		.map((movie) => `https://image.tmdb.org/t/p/original${movie.poster_path}`);
 
-// 	console.log(topRatedPosters);
+	console.log(topRatedPosters);
 
-// 	const movieCards = document.querySelectorAll(".movieCard");
+	const movieCards = document.querySelectorAll(".movieCard");
 
-// 	topRated.forEach((movie, index) => {
-// 		if (movieCards[index]) {
-// 			const img = movieCards[index].querySelector("img");
-// 			img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-// 			img.alt = movie.title;
+	topRated.forEach((movie, index) => {
+		if (movieCards[index]) {
+			const img = movieCards[index].querySelector("img");
+			img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+			img.alt = movie.title;
 
-// 			const title = movieCards[index].querySelector(".card-title");
-// 			title.textContent = movie.title;
+			const title = movieCards[index].querySelector(".card-title");
+			title.textContent = movie.title;
 
-// 			const description = movieCards[index].querySelector(".card-text");
-// 			description.textContent = movie.overview.slice(0, 10) + "...";
-// 		}
-// 	});
-// })();
+			const description = movieCards[index].querySelector(".card-text");
+			description.textContent = movie.overview.slice(0, 10) + "...";
+		}
+	});
+})();
