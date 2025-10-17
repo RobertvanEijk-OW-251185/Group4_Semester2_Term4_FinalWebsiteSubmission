@@ -39,73 +39,65 @@
 		</style>
 	</head>
 
-	<body>
-		<!-- Background -->
-		<section>
-			<div class="background-container">
-				<div class="background-overlay"></div>
-				<div class="background-pattern"></div>
-			</div>
-		</section>
-		<!-- Navbar -->
-		<header>
-			<nav class="navbar navbar-expand-lg navBack">
-				<div class="container-fluid position-relative">
-					<a class="navbar-brand montserrat-h1" href="../index.html">Navbar</a>
-					<form
-						class="d-flex position-absolute top-40 start-50 translate-middle-x"
-						role="search"
-						style="width: 40%; max-width: 600px">
-						<input
-							class="form-control me-2 w-100 navLooks"
-							type="search"
-							placeholder="Search"
-							aria-label="Search" />
-						<button class="btn searchBtnVisual" type="submit">Search</button>
-					</form>
-					<button
-						class="navbar-toggler"
-						type="button"
-						data-bs-toggle="collapse"
-						data-bs-target="#navbarSupportedContent"
-						aria-controls="navbarSupportedContent"
-						aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div
-						class="collapse navbar-collapse justify-content-end"
-						id="navbarSupportedContent">
-						<ul class="navbar-nav mb-2 mb-lg-0">
-							<li class="nav-item">
-								<a class="nav-link roboto-p" href="../index.html">Home</a>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link active roboto-p"
-									href="../pages/(c)movieLibraryPage.html"
-									>Movies</a
-								>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link roboto-p"
-									href="../pages/(e)movieWatchlistPage.html"
-									>Watch List</a
-								>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link roboto-p"
-									href="../pages/(a)signIn-signUp.html"
-									>Sign In</a
-								>
-							</li>
-						</ul>
+	<body class="body">
+		<div class="">
+			<nav class="NavFlex">
+				<div class="col">
+					<div class="Logo">
+						<img src="" height="50px" width="100px" alt="Logo" />
+					</div>
+				</div>
+
+				<div class="col">
+					<div>
+						<a href="(c)movieLibraryPage.html">Movies</a>
+						<a href="(e)movieWatchlistPage.html">Watch List</a>
 					</div>
 				</div>
 			</nav>
-		</header>
+		</div>
+
+		<!-- All Genres -->
+		<div class="container-fluid">
+			<h1 class="genreheading">Horror</h1>
+			<div id="movieCards_Horror" class="cardcontainer"></div>
+		</div>
+
+		<div class="container-fluid">
+			<h1 class="genreheading">Action</h1>
+			<div id="movieCards_Action" class="carousel"></div>
+		</div>
+
+		<div class="container-fluid">
+			<h1 class="genreheading">Crime</h1>
+			<div id="movieCards_Crime" class="cardcontainer"></div>
+		</div>
+
+		<div class="container-fluid">
+			<h1 class="genreheading">Animation</h1>
+			<div id="movieCards_Animation" class="cardcontainer"></div>
+		</div>
+
+		<div class="container-fluid">
+			<h1 class="genreheading">Science Fiction</h1>
+			<div id="movieCards_Science Fiction" class="cardcontainer"></div>
+		</div>
+
+		<div class="container-fluid">
+			<h1 class="genreheading">Western</h1>
+			<div id="movieCards_Western" class="cardcontainer"></div>
+		</div>
+
+		<div class="container-fluid">
+			<h1 class="genreheading">Drama</h1>
+			<div id="movieCards_Drama" class="cardcontainer"></div>
+		</div>
+
+		<div class="container-fluid">
+			<h1 class="genreheading">Family</h1>
+			<div id="movieCards_Family" class="cardcontainer"></div>
+		</div>
+
 		<!-- Bootstrap Script Link -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
