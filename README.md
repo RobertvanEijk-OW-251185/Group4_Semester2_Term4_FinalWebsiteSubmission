@@ -13,8 +13,8 @@ Group Members and Roles:
   Role:
   Description:
 - Robert_van_Eijk_251185 :
-  Role:
-  Description:
+  Role: GitHub Admin
+  Description: GitHub Administration and Home Page
 - Mandre_Vosloo_251176 :
   Role:
   Description:
@@ -61,18 +61,27 @@ TMDB (The Movie DataBase)
 - Link to Documentation: https://developer.themoviedb.org/reference/intro/getting-started
 
 - API Key:
-  Robert:
-  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNzBkNzg2ZTg5YmRhMjg2MjM2YTYyYjc5MmVkMzQ1MiIsIm5iZiI6MTc1NzI3NDMwMS41Mzc5OTk5LCJzdWIiOiI2OGJkZTBiZDIxZmZhZDBmYjM5OGJjYTUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Ws0ilcC4hs6-VK-KGxVHpXVVAsPEn49hbQnIs_w3Tl4
-
-Aiden:
-
-Rene:
-eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZDEyOGViZWFkNmFkNzE4OTc1OGY0MzZiZjU1MWEyZCIsIm5iZiI6MTc1NDgzNDY1MS4wMjksInN1YiI6IjY4OThhNmRiMjQxNjJmZDU5YjkyZWY0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vGpT23kzAWXLeBsH5Wo8Dw5dqtfFYr6sTCuCL0HiSpg
-
-Mandre:
+  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8
 
 - Necessary Information of HTTP Headers:
+
+const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`;
+
+<!-- const options = {
+		method: "GET",
+		headers: {
+			accept: "application/json",
+			Authorization:
+				"Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+		},
+	}; -->
 
 <!-- ● Weekly timeline for key progress milestones in the
 project within the group. (Schedule for what needs to
 be done by when). -->
+
+Reference List:
+API (The Movie Database)
+-The Movie Database (TMDb). (n.d.). TMDb API [Data set]. The Movie Database (TMDb). https://www.themoviedb.org/
+API Documentation:
+-The Movie Database (TMDb). (n.d.). TMDb API documentation. The Movie Database (TMDb). https://developer.themoviedb.org/docs/getting-started
