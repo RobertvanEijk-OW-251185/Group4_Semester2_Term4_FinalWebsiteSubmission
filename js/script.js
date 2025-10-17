@@ -75,6 +75,9 @@ console.log("all movies:", movielist);
 
   const containerid = `movieCards_${Movie.genre}`;
   const container = document.getElementById(containerid);
+  let watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+  const isInWatchlist = watchlist.some(item => item.id === Movie.id);
+  
 
   if (container) {
     const card = document.createElement('div');
@@ -83,19 +86,32 @@ console.log("all movies:", movielist);
       <img src="${Movie.image}" class="card-img-top" alt="Image Not Found">
       <h5 class="card-title">${Movie.title}</h5>
       <p class="card-text">Rating: ${Movie.rating}</p>
-      <a href="#" class="btn-primary">Add to watchlist</a>
+      <a href="#" class="btn-primary" ${isInWatchlist ? 'disabled' : ''}>
+        ${isInWatchlist ? 'Added' : 'Add to Watchlist'}
+      </a>
     `;
 
 card.addEventListener('click', (e) => {
   if (!e.target.classList.contains('btn-primary')) {
     window.location.href = `(d)individualMoviePage.html?id=${Movie.id}`;
+
+  } else{
+    e.preventDefault();
+    addToWatchlist(Movie);
+    e.target.textContent = "Added";
+    e.target.disabled = true; 
   }
     });
 
     container.appendChild(card);
   }
+
 });
 
+
+
+
+}();
 
 //Movie Details Page
 
@@ -129,7 +145,64 @@ async function getMovieDetails() {
 
 getMovieDetails();
 
-}();
+
+function addToWatchlist(movie) {
+  let watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+
+  const exists = watchlist.some(item => item.id === movie.id);
+  if (!exists) {
+    watchlist.push(movie);
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+  } else {
+    alert(`${movie.title} is already in your watchlist.`);
+  }
+  console.log("Current Watchlist:", watchlist);
+}
+
+//Watchlist
+
+  let watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+  const container = document.getElementById('watchlistContainer');
+
+console.log("Current Watchlist:", watchlist);
+
+  if (watchlist.length === 0) {
+    container.innerHTML = "<p>Your watchlist is empty.</p>";
+  } else {
+watchlist.forEach(Movie => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <img src="${Movie.image}" class="card-img-top" alt="Image Not Found">
+    <h5 class="card-title">${Movie.title}</h5>
+    <p class="card-text">Rating: ${Movie.rating}</p>
+    <a href="#" class="btn-primary">Remove From Watchlist</a>
+  `;
+
+  
+  card.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('btn-primary')){
+    window.location.href = `(d)individualMoviePage.html?id=${Movie.id}`;
+  }else{
+    e.preventDefault();
+
+    let updatedWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+    updatedWatchlist = updatedWatchlist.filter(item => item.id !== Movie.id);
+    localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
+
+    card.remove();
+
+    if (updatedWatchlist.length === 0) {
+      container.innerHTML = "<p>Your watchlist is empty.</p>";
+    }
+  }
+  });
+
+  container.appendChild(card);
+});
+  };
+
+
 
 
 
