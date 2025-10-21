@@ -1,5 +1,3 @@
-// Mandre js
-
 class Movies {
 	constructor(image, year, title, rating, genre, descirption, id) {
 		this.id = id;
@@ -117,7 +115,6 @@ class Movies {
 })();
 
 //Movie Details Page
-
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get("id");
 
@@ -130,6 +127,7 @@ async function getMovieDetails() {
 				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
 		},
 	};
+
 	try {
 		const response = await fetch(
 			`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
@@ -149,6 +147,36 @@ async function getMovieDetails() {
 			.map((g) => g.name)
 			.join(", ");
 		document.getElementById("movieYear").textContent = movie.release_date;
+
+		const backdrop = document.querySelector(".movie-backdrop");
+		if (backdrop) {
+			backdrop.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
+		}
+
+		const addBtn = document.getElementById("addToWatchlistBtn");
+		if (addBtn) {
+			const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+			const exists = watchlist.some((item) => item.id === movie.id);
+			if (exists) {
+				addBtn.textContent = "Added";
+				addBtn.disabled = true;
+			}
+
+			addBtn.addEventListener("click", () => {
+				const movieData = {
+					id: movie.id,
+					image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+					title: movie.title,
+					year: movie.release_date,
+					rating: movie.vote_average,
+					genre: movie.genres.map((g) => g.name).join(", "),
+					descirption: movie.overview,
+				};
+				addToWatchlist(movieData);
+				addBtn.textContent = "Added";
+				addBtn.disabled = true;
+			});
+		}
 	} catch (err) {
 		console.error(err);
 	}
