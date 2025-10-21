@@ -20,7 +20,7 @@
 			name="keywords"
 			content="HTML, CSS, JavaScript, PHP, js, css, Name_Surname_StudentNumber" />
 
-		<title>Movies</title>
+		<title>Template</title>
 
 		<!-- Font Links -->
 
@@ -32,26 +32,84 @@
 			crossorigin="anonymous" />
 
 		<!-- CSS Link -->
-		<link rel="stylesheet" href="../css/mandre.css" />
-		<!-- <link rel="stylesheet" href="../css/main.css" /> -->
-
-		<!-- Font Links -->
-		<style>
-			@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-		</style>
+		<link rel="stylesheet" href="../css/main.css" />
 	</head>
 
 	<body class="body">
-		<img id="movieImage" src="" alt="poster" class="movieposter" />
-		<div class="moviebody">
-			<h1 id="movieTitle" class="movietitle"></h1>
-			<div class="movieinfo">
-				<p id="movieRating"></p>
-				<p id="movieGenre"></p>
-				<p id="movieYear"></p>
-				<p id="movieDescription"></p>
-			</div>
-		</div>
+		<header>
+			<nav class="navbar navbar-expand-lg navBack">
+				<div class="container-fluid position-relative">
+					<a class="navbar-brand" href="./index.html">Navbar</a>
+					<form
+						class="d-flex position-absolute top-40 start-50 translate-middle-x"
+						role="search"
+						style="width: 40%; max-width: 600px">
+						<input
+							class="form-control me-2 w-100 navLooks"
+							type="search"
+							placeholder="Search"
+							aria-label="Search" />
+						<button class="btn searchBtnVisual" type="submit">Search</button>
+					</form>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div
+						class="collapse navbar-collapse justify-content-end"
+						id="navbarSupportedContent">
+						<ul class="navbar-nav mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" href="index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="(c)movieLibraryPage.html"
+									>Movies</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="(e)movieWatchlistPage.html"
+									>Watch List</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="(a)signIn-signUp.html"
+									>Sign In</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+<div class="moviehero">
+  <div class="movie-backdrop"></div>
+
+  <div class="moviecontent">
+    <img id="movieImage"  alt="poster" class="movieposter">
+
+    <div class="moviedetails">
+      <h1 id="movieTitle" class="movietitle"></h1>
+      <div class="moviemeta">
+        <span id="movieYear"></span> *
+        <span id="movieGenre"></span> *
+        <span id="movieRating"></span>
+      </div>
+
+      <p id="movieDescription" class="moviedescription">
+      </p>
+
+      <button id="addToWatchlistBtn" class="watchlistbtn">Add to Watchlist</button>
+    </div>
+  </div>
+</div>
 
 		<!-- Bootstrap Script Link -->
 		<script
@@ -59,8 +117,6 @@
 			integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
 			crossorigin="anonymous"></script>
 		<!-- JS Script Link -->
-		<script src="../js/testScript.js"></script>
-		<!-- <script src="../js/mandreScript.js"></script> -->
-		<!-- <script src="../js/script.js"></script> -->
+		<script src="../js/script.js"></script>
 	</body>
 </html>
