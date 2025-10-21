@@ -1,0 +1,110 @@
+.Movie {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 15px;
+  padding: 15px;
+  background-color: #f0f0f0; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.Movie:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.Movie img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.Movie h2 {
+  font-size: 1.5em;
+  margin: 10px 0 5px 0;
+  color: #333;
+}
+
+.Movie p {
+  font-size: 1em;
+  margin: 5px 0;
+  color: #555;
+}
+
+.Movie .rating {
+  font-weight: bold;
+  color: #ffcc00;
+  margin-top: 10px;
+}
+
+.Movie a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.Movie a:hover {
+  background-color: #0056b3;
+}
+
+/* Navbar */
+.navBack {
+ width: 100%;
+ background: var(--bg-dark);
+ backdrop-filter: blur(20px);
+ /* padding: 40px; */
+ box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+ border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-item a {
+ color: var(--light-blue);
+}
+
+.nav-item a:hover {
+ color: var(--info-blue);
+}
+
+.active {
+ color: var(--primary-blue) !important;
+}
+
+.navbar-brand {
+ color: var(--white);
+}
+
+.navLooks {
+ background: var(--bg-card);
+ backdrop-filter: blur(20px);
+ border-radius: 50px;
+ border: 1px solid var(--primary-blue) !important;
+ box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+}
+
+form input::placeholder {
+ color: var(--light-blue) !important;
+}
+
+.searchBtnVisual {
+ background: var(--primary-blue);
+ border-radius: 50px;
+ border: 1px solid var(--primary-blue) !important;
+ box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+}
+
+.navLooks:focus {
+ background: var(--bg-card) !important;
+ color: var(--light-blue) !important;
+ border-color: var(--primary-blue) !important;
+ box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+}
+/* Navbar End */
