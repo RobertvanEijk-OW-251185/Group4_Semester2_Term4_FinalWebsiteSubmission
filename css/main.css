@@ -116,27 +116,33 @@ form input::placeholder {
     color: #fff;
 }
 
- .cardcontainer {
-    display: flex;
-    flex-direction: row ;
-    flex-wrap: wrap;
-    gap: 20px;
-    outline: 5px #1e40af;
+.cardcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  padding: 20px;
+  background-color: #0f172a; 
 }
 
-.card{
-    flex: 0 0 auto;      
-    width: 250px;        
-    height: 500px;       
-    background-color: var(--dark-gray);
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-      outline-width: 3x;
-      outline-style: outset;
-  outline-color:#0284c7;
+.card {
+  position: relative;
+  width: 250px;
+  min-height: 420px; 
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .carousel{
@@ -174,41 +180,178 @@ form input::placeholder {
   
 }
 
-
-
-.cardimg{
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-}
-.btn-primary{
-text-decoration: none;
-background-color:#0284c7;
-width: 250px;
-height: 50px;
-color: aliceblue;
-display: flex;
-flex-direction: column;
-margin-top: auto;
-justify-content: center;
-justify-items: center;
+.cardimg {
+  width: 100%;
+  height: 65%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
-
-.movietitle{
-color: #fff;
-text-decoration: underline;
-    display: flex;
-    justify-content: center;
+.card-content {
+  padding: 12px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.movieinfo{
-    color: #fff;
-    display: flex;
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #f1f5f9;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.btn-primary {
+  background-color: #0284c7;
+  border: none;
+  width: 100%;
+  height: 45px;
+  color: #f8fafc;
+  font-weight: 600;
+  border-radius: 0 0 12px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary:hover {
+  background-color: #0369a1;
+}
+
+
+
+
+
+.moviehero {
+  position: relative;
+  height: 100vh; 
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+.movie-backdrop {
+  position: absolute;
+  inset: 0;
+  background: url('poster.jpg') center/cover no-repeat;
+  filter: blur(40px) brightness(0.35);
+  transform: scale(1.2);
+  z-index: 0;
+}
+
+
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.4) 100%);
+  z-index: 1;
+}
+
+
+.moviecontent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1400px;
+  padding: 60px;
+  width: 100%;
+}
+
+
+.movieposter {
+  width: 400px;
+  height: 600px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease;
+}
+
+.movieposter:hover {
+  transform: scale(1.05);
+}
+
+
+.moviedetails {
+  flex: 1;
+  max-width: 650px;
+}
+
+.movietitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #f8fafc;
+}
+
+.moviemeta {
+  color: #93c5fd;
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+}
+
+.moviedescription {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #e2e8f0;
+  margin-bottom: 40px;
+}
+
+
+.watchlistbtn {
+  background: linear-gradient(90deg, #0284c7, #0ea5e9);
+  border: none;
+  color: white;
+  padding: 16px 36px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.watchlistbtn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(90deg, #0ea5e9, #0284c7);
+}
+.watchlisttext{
+    color: floralwhite;
+}
+
+
+@media (max-width: 900px) {
+  .movie-content {
     flex-direction: column;
-    opacity: 100%;
-}
+    text-align: center;
+    gap: 30px;
+    padding: 30px;
+  }
 
-.moviebody{
-background-color:#020d30;
+  .movie-poster {
+    width: 70%;
+    height: auto;
+  }
+
+  .movie-title {
+    font-size: 2.5rem;
+  }
+
+  .movie-description {
+    font-size: 1rem;
+  }
 }
