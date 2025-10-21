@@ -472,7 +472,16 @@ $(document).ready(function () {
 
 			const captionDiv = document.createElement("div");
 			captionDiv.classList.add("carousel-caption", "d-none", "d-md-block");
-			captionDiv.innerHTML = `<h5>${movies[index].title}</h5>`;
+			captionDiv.innerHTML = `<h5 class="montserrat-h1">${
+				movies[index].title
+			}</h5> <p class="roboto-p">
+<p class="roboto-p">
+<p class="roboto-p">${
+				movies[index].overview
+					? movies[index].overview.slice(0, 250) + "..."
+					: "No description available."
+			}</p>
+`;
 			itemDiv.appendChild(captionDiv);
 
 			carouselInner.appendChild(itemDiv);
@@ -533,7 +542,7 @@ $(document).ready(function () {
 			title.textContent = movie.title;
 
 			const description = movieCards[index].querySelector(".card-text");
-			description.textContent = movie.overview.slice(0, 10) + "...";
+			description.textContent = movie.overview.slice(0, 30) + "...";
 		}
 	});
 })();
@@ -542,7 +551,7 @@ $(document).ready(function () {
 
 !(async function () {
 	const url =
-		"https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+		"https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
 	const options = {
 		method: "GET",
 		headers: {
@@ -556,19 +565,19 @@ $(document).ready(function () {
 
 	console.log(data);
 
-	const topRated = data.results.slice(0, 4);
+	const popular = data.results.slice(0, 4);
 
-	console.log(topRated);
+	console.log(popular);
 
-	const topRatedPosters = topRated
+	const popularPosters = popular
 		.filter((movie) => movie.poster_path)
 		.map((movie) => `https://image.tmdb.org/t/p/original${movie.poster_path}`);
 
-	console.log(topRatedPosters);
+	console.log(popularPosters);
 
-	const movieCards = document.querySelectorAll(".movieCard");
+	const movieCards = document.querySelectorAll(".movieCardPopular");
 
-	topRated.forEach((movie, index) => {
+	popular.forEach((movie, index) => {
 		if (movieCards[index]) {
 			const img = movieCards[index].querySelector("img");
 			img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -578,7 +587,7 @@ $(document).ready(function () {
 			title.textContent = movie.title;
 
 			const description = movieCards[index].querySelector(".card-text");
-			description.textContent = movie.overview.slice(0, 10) + "...";
+			description.textContent = movie.overview.slice(0, 30) + "...";
 		}
 	});
 })();
