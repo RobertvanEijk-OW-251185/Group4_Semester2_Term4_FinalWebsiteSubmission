@@ -6,88 +6,83 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Aiden Renwick 251093">
         <meta name="Keywords" content=" "> <!--What you want to pop up when searched  -->
-        <title>Watch-List</title>
+        <title>Template</title>
 
         <!--Link to css stylesheet-->
         <link rel="stylesheet" href="css/main.css">
-        <!--Link to Bootstrap-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        
 </head>
 
 
 
 <body>
-   <h1>Movie List</h1>
-   <div id=""movies"></div>   
-   
-   
 
-<!-- Navbar -->
-  <header>
-   <nav class="navbar navbar-expand-lg navBack">
-    <div class="container-fluid position-relative">
-     <a class="navbar-brand" href="./index.html">Navbar</a>
-     <form
-      class="d-flex position-absolute top-40 start-50 translate-middle-x"
-      role="search"
-      style="width: 40%; max-width: 600px">
-      <input
-       class="form-control me-2 w-100 navLooks"
-       type="search"
-       placeholder="Search"
-       aria-label="Search" />
-      <button class="btn searchBtnVisual" type="submit">Search</button>
-     </form>
-     <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-     </button>
-     <div
-      class="collapse navbar-collapse justify-content-end"
-      id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-       <li class="nav-item">
-        <a class="nav-link active" href="./index.html">Home</a>
-       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="./pages/(c)movieLibraryPage.html"
-         >Movies</a
-        >
-       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="./pages/(e)movieWatchlistPage.html"
-         >Watch List</a
-        >
-       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="./pages/(a)signIn-signUp.html"
-         >Sign In</a
-        >
-       </li>
-      </ul>
-     </div>
-    </div>
-   </nav>
-  </header>
+        <header>
+			<nav class="navbar navbar-expand-lg navBack">
+				<div class="container-fluid position-relative">
+					<a class="navbar-brand" href="./index.html">Navbar</a>
+					<form
+						class="d-flex position-absolute top-40 start-50 translate-middle-x"
+						role="search"
+						style="width: 40%; max-width: 600px">
+						<input
+							class="form-control me-2 w-100 navLooks"
+							type="search"
+							placeholder="Search"
+							aria-label="Search" />
+						<button class="btn searchBtnVisual" type="submit">Search</button>
+					</form>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div
+						class="collapse navbar-collapse justify-content-end"
+						id="navbarSupportedContent">
+						<ul class="navbar-nav mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" href="index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="(c)movieLibraryPage.html"
+									>Movies</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="(e)movieWatchlistPage.html"
+									>Watch List</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="(a)signIn-signUp.html"
+									>Sign In</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
 
 
 
 
-
-
-
-
+<div class="watchlisttext">
+ <div class="container-fluid">
+    <div id="watchlistContainer" class="cardcontainer"></div>
+  </div>
+</div>
 
 
 <!--Link to JavaScript stylesheet-->
 <script src="js/script.js"></script>
-<!--Link to Bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
