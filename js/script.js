@@ -281,6 +281,7 @@ $(document).ready(function () {
 		};
 
 		localStorage.setItem("moviesUser", JSON.stringify(userData));
+		sessionStorage.setItem("movieUser", JSON.stringify(userData));
 
 		// Show personalized success message in custom alert
 		showAlert(
@@ -342,6 +343,14 @@ $(document).ready(function () {
 						email: userData.email,
 					})
 				);
+				sessionStorage.setItem(
+					"movieCurrentUser",
+					JSON.stringify({
+						username: userData.username,
+						phone: userData.phone,
+						email: userData.email,
+					})
+				);
 
 				// Remember me
 				if ($("#remember-me").is(":checked")) {
@@ -360,7 +369,7 @@ $(document).ready(function () {
 				$("#signin-form")[0].reset();
 
 				// Redirect to dashboard in real app
-				// window.location.href = 'dashboard.html';
+				window.location.href = "index.html";
 			} else {
 				showAlert(
 					"Login Failed",
@@ -400,18 +409,19 @@ $(document).ready(function () {
 		}
 	}
 
-	// // Home Page: Display users name after sign in/sign up
-	// const currentPage = window.location.pathname;
-	// if (currentPage.includes("index.html")) {
-	// 	const currentUser = localStorage.getItem("moviesCurrentUser");
-	// 	if (currentUser) {
-	// 		const user = JSON.parse(currentUser);
-	// 		const welcomeElement = document.getElementById("welcomeUser");
-	// 		if (welcomeElement) {
-	// 			welcomeElement.textContent = `Welcome, ${user.username} (:`;
-	// 		}
-	// 	}
-	// }
+	// // Home Page: Display username after sign in/sign up
+	const currentPage = window.location.pathname;
+	if (currentPage.includes("index.html")) {
+		const currentUser = localStorage.getItem("moviesCurrentUser");
+		// const currentUser = sessionStorage.getItem("movieCurrentUser");
+		if (currentUser) {
+			const user = JSON.parse(currentUser);
+			const welcomeElement = document.getElementById("welcomeUser");
+			if (welcomeElement) {
+				welcomeElement.textContent = `Welcome, ${user.username} (:`;
+			}
+		}
+	}
 });
 
 // API Fetch and Integration:

@@ -861,8 +861,7 @@ h5 {
 
 /* Movie Cards */
 
-.movieCard,
-.cardcontainer {
+.movieCard {
 	background: var(--bg-card);
 	backdrop-filter: blur(20px);
 	border-radius: 20px;
@@ -944,10 +943,31 @@ h5 {
 	text-transform: uppercase;
 }
 
+.movieCardButtons {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
+	gap: 10px;
+	z-index: 2;
+}
+
 .viewDetailsBtn {
 	background: var(--primary-blue);
 	color: var(--white);
 	border: none;
+	padding: 5px 20px;
+	border-radius: 25px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	letter-spacing: 1px;
+}
+
+.removeBtn {
+	color: var(--white);
+	border: 1px solid var(--error-red);
 	padding: 5px 20px;
 	border-radius: 25px;
 	font-weight: 600;

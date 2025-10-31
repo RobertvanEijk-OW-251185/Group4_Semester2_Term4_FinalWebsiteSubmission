@@ -22,8 +22,6 @@
 
 		<title>Homepage</title>
 
-		<!-- Font Links -->
-
 		<!-- Bootstrap Link -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -45,14 +43,14 @@
 
 	<body>
 		<!-- Background -->
-		<section>
+		<section class="background">
 			<div class="background-container">
 				<div class="background-overlay"></div>
 				<div class="background-pattern"></div>
 			</div>
 		</section>
 		<!-- Navbar -->
-		<header>
+		<header class="navigation_bar">
 			<nav class="navbar navbar-expand-lg navBack">
 				<div class="container-fluid position-relative">
 					<a class="navbar-brand montserrat-h1" href="./index.html">Navbar</a>
@@ -83,28 +81,29 @@
 						<ul class="navbar-nav mb-2 mb-lg-0">
 							<li class="nav-item">
 								<a class="nav-link active roboto-p" href="./index.html">
-									<i class="fa-solid fa-house"></i>
+									<i class="fa-solid fa-house"></i><i>Home</i>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a
 									class="nav-link roboto-p"
 									href="./pages/(c)movieLibraryPage.html">
-									<i class="fa-solid fa-film"></i
-								></a>
+									<i class="fa-solid fa-film"></i><i>Movies</i></a
+								>
 							</li>
 							<li class="nav-item">
 								<a
 									class="nav-link roboto-p"
 									href="./pages/(e)movieWatchlistPage.html">
-									<i class="fa-solid fa-bookmark"></i
-								></a>
+									<i class="fa-solid fa-bookmark"></i>
+									<i>Watch List</i></a
+								>
 							</li>
 							<li class="nav-item">
 								<a
 									class="nav-link roboto-p"
 									href="./pages/(a)signIn-signUp.html">
-									<i class="fa-solid fa-circle-user"></i>
+									<i class="fa-solid fa-circle-user"></i><i>Sign In</i>
 								</a>
 							</li>
 						</ul>
@@ -205,7 +204,6 @@
 			<div class="container">
 				<div class="row">
 					<h2 class="sectionTitle">Top Rated</h2>
-
 					<div class="col-md-3">
 						<div class="card movieCard">
 							<img
@@ -403,7 +401,8 @@
 		<!-- jQuery script link -->
 		<script src="../js/jQuery.js"></script>
 		<!-- JS Script Link -->
-		<script src="./js/script.js"></script>
+		<!-- <script src="./js/script.js"></script> -->
 		<!-- <script src="./js/testScript.js"></script> -->
+		<script src="./js/testScript2.js"></script>
 	</body>
 </html>
