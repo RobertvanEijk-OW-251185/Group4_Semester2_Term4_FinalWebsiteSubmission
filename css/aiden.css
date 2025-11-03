@@ -584,53 +584,46 @@ body {
 /* =======================
    NAVBAR
 ======================= */
-/* Navbar */
+/* Navbar Container */
 .navBack {
 	width: 100%;
 	background: var(--bg-dark);
 	backdrop-filter: blur(20px);
-	/* padding: 40px; */
 	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 	border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Navbar Links */
 .nav-item a {
 	color: var(--light-blue);
 	padding: 10px 15px;
-	transition: color 0.3s ease;
 	margin-left: 10px;
 	margin-right: 10px;
+	transition: color 0.3s ease;
 }
 
 .nav-item a:hover {
 	color: var(--info-blue);
 }
 
+/* Active link highlight */
 .active {
 	color: var(--primary-blue) !important;
 }
 
+/* Brand Name / Logo */
 .navbar-brand {
 	color: var(--white);
 }
 
+/* Search input / navbar form look */
 .navLooks {
-	background: var(--bg-card);
-	backdrop-filter: blur(20px);
-	border-radius: 50px;
+	background: var(--bg-card) !important;
+	backdrop-filter: blur(20px) !important;
+	border-radius: 50px !important;
 	border: 1px solid var(--primary-blue) !important;
-	box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
-}
-
-form input::placeholder {
-	color: var(--light-blue) !important;
-}
-
-.searchBtnVisual {
-	background: var(--primary-blue);
-	border-radius: 50px;
-	border: 1px solid var(--primary-blue) !important;
-	box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+	box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4) !important;
+	padding: 5px 15px !important; /* optional: match Home Page spacing */
 }
 
 .navLooks:focus {
@@ -638,8 +631,30 @@ form input::placeholder {
 	color: var(--light-blue) !important;
 	border-color: var(--primary-blue) !important;
 	box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+	outline: none;
 }
-/* Navbar End */
+
+/* Placeholder text inside navbar input */
+form input::placeholder {
+	color: var(--light-blue) !important;
+}
+
+/* Search button style */
+.searchBtnVisual {
+	background: var(--primary-blue) !important;
+	border-radius: 50px !important;
+	border: 1px solid var(--primary-blue) !important;
+	box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4) !important;
+	color: var(--white) !important;
+	cursor: pointer !important;
+	padding: 8px 18px !important;
+	transition: all 0.3s ease !important;
+}
+
+.searchBtnVisual:hover {
+	background: var(--dark-gray);
+	box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+}
 /* =======================
    FOOTER
 ======================= */
