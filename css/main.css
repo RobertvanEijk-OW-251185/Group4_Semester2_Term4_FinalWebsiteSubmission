@@ -981,7 +981,7 @@ h5 {
 	color: var(--light-blue);
 } /* Home Page End */
 
-.background-overlay {
+/* .background-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -1016,10 +1016,10 @@ h5 {
 			rgba(255, 255, 255, 0.05) 0%,
 			transparent 50%
 		);
-}
+} */
 
 /* Filter Button*/
-#filterActionBtn {
+/* #filterActionBtn {
 	background-color: #007bff;
 	color: white;
 	border: none;
@@ -1033,10 +1033,10 @@ h5 {
 
 #filterActionBtn:hover {
 	background-color: #0069d9;
-}
+} */
 
 /* Home Page Filter */
-.searchFilter {
+/* .searchFilter {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -1075,4 +1075,4 @@ h5 {
 
 .searchFilter ul li a:hover {
 	color: #0a0a0a;
-}
+} */
