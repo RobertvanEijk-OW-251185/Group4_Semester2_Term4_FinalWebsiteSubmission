@@ -722,7 +722,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	watchlist.forEach((movie) => {
 		const cardHTML = `
 		<div class="col-md-3">
-			<div class="card movieCard">
+			<div class="card movieCard mx-auto">
 				<img src="${movie.image}" class="card-img-top" alt="{movie.title}" />
 				<div class="cardTextBackground"></div>
 				<div class="card-body">
