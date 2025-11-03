@@ -22,8 +22,6 @@
 
 		<title>Sign In/Sign Up</title>
 
-		<!-- Font Links -->
-
 		<!-- Bootstrap Link -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -33,6 +31,15 @@
 
 		<!-- CSS Link -->
 		<link rel="stylesheet" href="../css/main.css" />
+		<!-- Fontawesome Link -->
+		<script
+			src="https://kit.fontawesome.com/900fc3b7f3.js"
+			crossorigin="anonymous"></script>
+		<!-- Font Links -->
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+		</style>
+
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 	</head>
 
@@ -42,7 +49,7 @@
 			<div class="background-pattern"></div>
 		</div>
 		<!-- Navbar -->
-		<header>
+		<header class="navigation_bar">
 			<nav class="navbar navbar-expand-lg navBack">
 				<div class="container-fluid position-relative">
 					<a class="navbar-brand montserrat-h1" href="../index.html">Navbar</a>
@@ -72,28 +79,31 @@
 						id="navbarSupportedContent">
 						<ul class="navbar-nav mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link roboto-p" href="../index.html">Home</a>
+								<a class="nav-link roboto-p" href="../index.html">
+									<i class="fa-solid fa-house"></i><i>Home</i>
+								</a>
 							</li>
 							<li class="nav-item">
 								<a
 									class="nav-link roboto-p"
-									href="../pages/(c)movieLibraryPage.html"
-									>Movies</a
+									href="../pages/(c)movieLibraryPage.html">
+									<i class="fa-solid fa-film"></i><i>Movies</i></a
 								>
 							</li>
 							<li class="nav-item">
 								<a
 									class="nav-link roboto-p"
-									href="../pages/(e)movieWatchlistPage.html"
-									>Watch List</a
+									href="../pages/(e)movieWatchlistPage.html">
+									<i class="fa-solid fa-bookmark"></i>
+									<i>Watch List</i></a
 								>
 							</li>
 							<li class="nav-item">
 								<a
 									class="nav-link active roboto-p"
-									href="../pages/(a)signIn-signUp.html"
-									>Sign In</a
-								>
+									href="../pages/(a)signIn-signUp.html">
+									<i class="fa-solid fa-circle-user"></i><i>Sign In</i>
+								</a>
 							</li>
 						</ul>
 					</div>

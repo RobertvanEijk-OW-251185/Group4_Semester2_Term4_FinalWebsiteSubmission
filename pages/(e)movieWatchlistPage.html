@@ -20,7 +20,7 @@
 			name="keywords"
 			content="HTML, CSS, JavaScript, PHP, js, css, Name_Surname_StudentNumber" />
 
-		<title>Template</title>
+		<title>Homepage</title>
 
 		<!-- Font Links -->
 
@@ -32,15 +32,32 @@
 			crossorigin="anonymous" />
 
 		<!-- CSS Link -->
-		<!-- <link rel="stylesheet" href="../css/main.css" /> -->
-		<link rel="stylesheet" href="../css/mandre.css" />
-		<body class="body">
+		<link rel="stylesheet" href="../css/main.css" />
+		<!-- <link rel="stylesheet" href="../css/mandre.css" /> -->
+		<!-- Fontawesome Link -->
+		<script
+			src="https://kit.fontawesome.com/900fc3b7f3.js"
+			crossorigin="anonymous"></script>
+		<!-- Font Links -->
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+		</style>
 	</head>
 
-		<header>
+	<body>
+		<!-- Background -->
+		<section>
+			<div class="background-container">
+				<div class="background-overlay"></div>
+				<div class="background-pattern"></div>
+			</div>
+		</section>
+
+		<!-- Nav Bar -->
+		<header class="navigation_bar">
 			<nav class="navbar navbar-expand-lg navBack">
 				<div class="container-fluid position-relative">
-					<a class="navbar-brand" href="./index.html">Navbar</a>
+					<a class="navbar-brand montserrat-h1" href="../index.html">Navbar</a>
 					<form
 						class="d-flex position-absolute top-40 start-50 translate-middle-x"
 						role="search"
@@ -67,45 +84,78 @@
 						id="navbarSupportedContent">
 						<ul class="navbar-nav mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link active" href="index.html">Home</a>
+								<a class="nav-link roboto-p" href="../index.html">
+									<i class="fa-solid fa-house"></i><i>Home</i>
+								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="(c)movieLibraryPage.html"
-									>Movies</a
+								<a
+									class="nav-link roboto-p"
+									href="../pages/(c)movieLibraryPage.html">
+									<i class="fa-solid fa-film"></i><i>Movies</i></a
 								>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="(e)movieWatchlistPage.html"
-									>Watch List</a
+								<a
+									class="nav-link active roboto-p"
+									href="../pages/(e)movieWatchlistPage.html">
+									<i class="fa-solid fa-bookmark"></i>
+									<i>Watch List</i></a
 								>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="(a)signIn-signUp.html"
-									>Sign In</a
-								>
+								<a
+									class="nav-link roboto-p"
+									href="../pages/(a)signIn-signUp.html">
+									<i class="fa-solid fa-circle-user"></i><i>Sign In</i>
+								</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</header>
+		<!-- Watch List Banner -->
+		<section class="welcomeBackBanner">
+			<h1 class="welcome col-md-8 mx-auto montserrat-h1" id="welcomeUser">
+				Watch List
+			</h1>
+		</section>
+		<!-- Movie Display Section -->
+		<div class="container-fluid">
+			<section class="watch_list">
+				<div class="container">
+					<div class="row" id="watchlistContainer"></div>
+				</div>
+			</section>
+		</div>
 
-
-
-
-<div class="watchlisttext">
- <div class="container-fluid">
-    <div id="watchlistContainer" class="cardcontainer"></div>
-  </div>
-</div>
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-content">
+				<p>&copy; 2025 Movies. All rights reserved.</p>
+				<div class="footer-links">
+					<a href="#">Privacy</a>
+					<a href="#">Terms</a>
+					<a href="#">Help</a>
+				</div>
+			</div>
+		</footer>
+		<!-- Fontawesome Link -->
+		<script
+			src="https://kit.fontawesome.com/900fc3b7f3.js"
+			crossorigin="anonymous"></script>
 		<!-- Bootstrap Script Link -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
 			crossorigin="anonymous"></script>
-
+		<!-- jQuery script link -->
+		<script src="../js/jQuery.js"></script>
 		<!-- JS Script Link -->
 		<!-- <script src="../js/script.js"></script> -->
-		<script src="../js/mandreScript.js"></script>
+		<!-- <script src="../js/mandreScript.js"></script> -->
+		<!-- <script src="../js/testScript.js"></script> -->
+		<script src="../js/testScript2.js"></script>
 	</body>
 </html>
