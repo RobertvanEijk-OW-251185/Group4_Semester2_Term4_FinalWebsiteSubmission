@@ -1,422 +1,430 @@
 // ===========================================
 //   SIGN IN / SIGN UP PAGE (Rene)
 // ===========================================
+const currentPage = window.location.pathname;
 
-$(document).ready(function () {
-	// Custom Alert System
-	function showAlert(title, message, type = "info") {
-		const alert = $("#custom-alert");
-		const alertIcon = alert.find(".alert-icon");
-		const alertTitle = alert.find(".alert-title");
-		const alertMessage = alert.find(".alert-message");
+if (currentPage.includes("(a)signIn-signUp.html")) {
+	$(document).ready(function () {
+		$(document).ready(function () {
+			// Custom Alert System
+			function showAlert(title, message, type = "info") {
+				const alert = $("#custom-alert");
+				const alertIcon = alert.find(".alert-icon");
+				const alertTitle = alert.find(".alert-title");
+				const alertMessage = alert.find(".alert-message");
 
-		// Set content
-		alertTitle.text(title);
-		alertMessage.text(message);
+				// Set content
+				alertTitle.text(title);
+				alertMessage.text(message);
 
-		// Set icon and color based on type
-		alertIcon.removeClass("success error warning info");
-		switch (type) {
-			case "success":
-				alertIcon.addClass("success").html("✓");
-				break;
-			case "error":
-				alertIcon.addClass("error").html("✕");
-				break;
-			case "warning":
-				alertIcon.addClass("warning").html("!");
-				break;
-			case "info":
-				alertIcon.addClass("info").html("i");
-				break;
-		}
-
-		// Show alert
-		alert.addClass("show");
-	}
-
-	// Close alert
-	$(".alert-close-btn").on("click", function () {
-		$("#custom-alert").removeClass("show");
-	});
-
-	// Close alert when clicking outside
-	$("#custom-alert").on("click", function (e) {
-		if (e.target === this) {
-			$(this).removeClass("show");
-		}
-	});
-
-	// Form toggle functionality
-	$("#switch-to-signup").on("click", function (e) {
-		e.preventDefault();
-		switchToSignUp();
-	});
-
-	$("#switch-to-signin").on("click", function (e) {
-		e.preventDefault();
-		switchToSignIn();
-	});
-
-	function switchToSignIn() {
-		$("#signin-form").addClass("active");
-		$("#signup-form").removeClass("active");
-		clearValidationMessages();
-	}
-
-	function switchToSignUp() {
-		$("#signup-form").addClass("active");
-		$("#signin-form").removeClass("active");
-		clearValidationMessages();
-	}
-
-	// Clear validation messages
-	function clearValidationMessages() {
-		$(".error-message").hide();
-		$(".success-message").hide();
-		$(".warning-message").hide();
-		$(".info-message").hide();
-	}
-
-	// Phone number formatting (9 digits for South Africa)
-	$('input[type="tel"]').on("input", function () {
-		let phone = $(this).val().replace(/\D/g, "");
-		if (phone.length > 9) {
-			phone = phone.substring(0, 9);
-		}
-		$(this).val(phone);
-	});
-
-	// Real-time password confirmation validation
-	$("#signup-confirm-password").on("input", function () {
-		const password = $("#signup-password").val();
-		const confirmPassword = $(this).val();
-
-		if (confirmPassword && password !== confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Passwords do not match",
-				"error"
-			);
-		} else if (confirmPassword && password === confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Passwords match!",
-				"success"
-			);
-		} else {
-			$("#signup-confirm-password-error").hide();
-		}
-	});
-
-	// Real-time password length validation
-	$("#signup-password").on("input", function () {
-		const password = $(this).val();
-
-		if (password && password.length < 6) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password must be at least 6 characters",
-				"error"
-			);
-		} else if (password && password.length >= 6) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password strength: Good",
-				"success"
-			);
-		} else {
-			$("#signup-password-error").hide();
-		}
-	});
-
-	// Phone number validation (9 digits)
-	$('input[type="tel"]').on("blur", function () {
-		const phone = $(this).val();
-		if (phone && phone.length !== 9) {
-			const errorId = $(this).attr("id") + "-error";
-			$("#" + errorId)
-				.text("South African number must be 9 digits")
-				.show();
-		}
-	});
-
-	// Show validation message
-	function showValidationMessage(element, message, type = "error") {
-		element.removeClass(
-			"error-message warning-message success-message info-message"
-		);
-
-		switch (type) {
-			case "error":
-				element.addClass("error-message");
-				break;
-			case "warning":
-				element.addClass("warning-message");
-				break;
-			case "success":
-				element.addClass("success-message");
-				break;
-			case "info":
-				element.addClass("info-message");
-				break;
-		}
-
-		element.text(message).show();
-	}
-
-	// Sign Up Form Submission
-	$("#signup-form").on("submit", function (e) {
-		e.preventDefault();
-
-		clearValidationMessages();
-
-		const username = $("#signup-username").val();
-		const phone = $("#signup-phone").val();
-		const email = $("#signup-email").val();
-		const password = $("#signup-password").val();
-		const confirmPassword = $("#signup-confirm-password").val();
-
-		let isValid = true;
-
-		// Validate username
-		if (!username) {
-			showValidationMessage(
-				$("#signup-username-error"),
-				"Username is required",
-				"error"
-			);
-			isValid = false;
-		} else if (username.length < 3) {
-			showValidationMessage(
-				$("#signup-username-error"),
-				"Username must be at least 3 characters",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate phone (9 digits for South Africa)
-		if (!phone) {
-			showValidationMessage(
-				$("#signup-phone-error"),
-				"Phone number is required",
-				"error"
-			);
-			isValid = false;
-		} else if (phone.length !== 9) {
-			showValidationMessage(
-				$("#signup-phone-error"),
-				"South African number must be 9 digits",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate email
-		if (!email) {
-			showValidationMessage(
-				$("#signup-email-error"),
-				"Email is required",
-				"error"
-			);
-			isValid = false;
-		} else if (!isValidEmail(email)) {
-			showValidationMessage(
-				$("#signup-email-error"),
-				"Please enter a valid email address",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate password
-		if (!password) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password is required",
-				"error"
-			);
-			isValid = false;
-		} else if (password.length < 6) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password must be at least 6 characters",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate password confirmation
-		if (!confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Please confirm your password",
-				"error"
-			);
-			isValid = false;
-		} else if (password !== confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Passwords do not match",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Check terms
-		if (!$("#terms").is(":checked")) {
-			showAlert(
-				"Terms Required",
-				"You must agree to the Terms of Service and Privacy Policy!",
-				"warning"
-			);
-			isValid = false;
-		}
-
-		if (!isValid) return;
-
-		// Store user data with username
-		const userData = {
-			username: username,
-			phone: "+27" + phone,
-			email: email,
-			password: password,
-		};
-
-		localStorage.setItem("moviesUser", JSON.stringify(userData));
-
-		// Show personalized success message in custom alert
-		showAlert(
-			"Welcome to Movies!",
-			`Hello ${username}! Your account has been created successfully. You can now sign in and start enjoying unlimited movies and TV shows.`,
-			"success"
-		);
-
-		switchToSignIn();
-		$("#signup-form")[0].reset();
-	});
-
-	// Sign In Form Submission
-	$("#signin-form").on("submit", function (e) {
-		e.preventDefault();
-
-		clearValidationMessages();
-
-		const username = $("#signin-username").val();
-		const password = $("#signin-password").val();
-
-		let isValid = true;
-
-		// Validate username
-		if (!username) {
-			showValidationMessage(
-				$("#signin-username-error"),
-				"Username is required",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate password
-		if (!password) {
-			showValidationMessage(
-				$("#signin-password-error"),
-				"Password is required",
-				"error"
-			);
-			isValid = false;
-		}
-
-		if (!isValid) return;
-
-		// Check credentials
-		const storedUser = localStorage.getItem("moviesUser");
-
-		if (storedUser) {
-			const userData = JSON.parse(storedUser);
-
-			if (username === userData.username && password === userData.password) {
-				// Store session with username
-				localStorage.setItem(
-					"moviesCurrentUser",
-					JSON.stringify({
-						username: userData.username,
-						phone: userData.phone,
-						email: userData.email,
-					})
-				);
-
-				// Remember me
-				if ($("#remember-me").is(":checked")) {
-					localStorage.setItem("moviesRememberMe", "true");
-				} else {
-					localStorage.removeItem("moviesRememberMe");
+				// Set icon and color based on type
+				alertIcon.removeClass("success error warning info");
+				switch (type) {
+					case "success":
+						alertIcon.addClass("success").html("✓");
+						break;
+					case "error":
+						alertIcon.addClass("error").html("✕");
+						break;
+					case "warning":
+						alertIcon.addClass("warning").html("!");
+						break;
+					case "info":
+						alertIcon.addClass("info").html("i");
+						break;
 				}
 
-				// Show personalized welcome back message in custom alert
+				// Show alert
+				alert.addClass("show");
+			}
+
+			// Close alert
+			$(".alert-close-btn").on("click", function () {
+				$("#custom-alert").removeClass("show");
+			});
+
+			// Close alert when clicking outside
+			$("#custom-alert").on("click", function (e) {
+				if (e.target === this) {
+					$(this).removeClass("show");
+				}
+			});
+
+			// Form toggle functionality
+			$("#switch-to-signup").on("click", function (e) {
+				e.preventDefault();
+				switchToSignUp();
+			});
+
+			$("#switch-to-signin").on("click", function (e) {
+				e.preventDefault();
+				switchToSignIn();
+			});
+
+			function switchToSignIn() {
+				$("#signin-form").addClass("active");
+				$("#signup-form").removeClass("active");
+				clearValidationMessages();
+			}
+
+			function switchToSignUp() {
+				$("#signup-form").addClass("active");
+				$("#signin-form").removeClass("active");
+				clearValidationMessages();
+			}
+
+			// Clear validation messages
+			function clearValidationMessages() {
+				$(".error-message").hide();
+				$(".success-message").hide();
+				$(".warning-message").hide();
+				$(".info-message").hide();
+			}
+
+			// Phone number formatting (9 digits for South Africa)
+			$('input[type="tel"]').on("input", function () {
+				let phone = $(this).val().replace(/\D/g, "");
+				if (phone.length > 9) {
+					phone = phone.substring(0, 9);
+				}
+				$(this).val(phone);
+			});
+
+			// Real-time password confirmation validation
+			$("#signup-confirm-password").on("input", function () {
+				const password = $("#signup-password").val();
+				const confirmPassword = $(this).val();
+
+				if (confirmPassword && password !== confirmPassword) {
+					showValidationMessage(
+						$("#signup-confirm-password-error"),
+						"Passwords do not match",
+						"error"
+					);
+				} else if (confirmPassword && password === confirmPassword) {
+					showValidationMessage(
+						$("#signup-confirm-password-error"),
+						"Passwords match!",
+						"success"
+					);
+				} else {
+					$("#signup-confirm-password-error").hide();
+				}
+			});
+
+			// Real-time password length validation
+			$("#signup-password").on("input", function () {
+				const password = $(this).val();
+
+				if (password && password.length < 6) {
+					showValidationMessage(
+						$("#signup-password-error"),
+						"Password must be at least 6 characters",
+						"error"
+					);
+				} else if (password && password.length >= 6) {
+					showValidationMessage(
+						$("#signup-password-error"),
+						"Password strength: Good",
+						"success"
+					);
+				} else {
+					$("#signup-password-error").hide();
+				}
+			});
+
+			// Phone number validation (9 digits)
+			$('input[type="tel"]').on("blur", function () {
+				const phone = $(this).val();
+				if (phone && phone.length !== 9) {
+					const errorId = $(this).attr("id") + "-error";
+					$("#" + errorId)
+						.text("South African number must be 9 digits")
+						.show();
+				}
+			});
+
+			// Show validation message
+			function showValidationMessage(element, message, type = "error") {
+				element.removeClass(
+					"error-message warning-message success-message info-message"
+				);
+
+				switch (type) {
+					case "error":
+						element.addClass("error-message");
+						break;
+					case "warning":
+						element.addClass("warning-message");
+						break;
+					case "success":
+						element.addClass("success-message");
+						break;
+					case "info":
+						element.addClass("info-message");
+						break;
+				}
+
+				element.text(message).show();
+			}
+
+			// Sign Up Form Submission
+			$("#signup-form").on("submit", function (e) {
+				e.preventDefault();
+
+				clearValidationMessages();
+
+				const username = $("#signup-username").val();
+				const phone = $("#signup-phone").val();
+				const email = $("#signup-email").val();
+				const password = $("#signup-password").val();
+				const confirmPassword = $("#signup-confirm-password").val();
+
+				let isValid = true;
+
+				// Validate username
+				if (!username) {
+					showValidationMessage(
+						$("#signup-username-error"),
+						"Username is required",
+						"error"
+					);
+					isValid = false;
+				} else if (username.length < 3) {
+					showValidationMessage(
+						$("#signup-username-error"),
+						"Username must be at least 3 characters",
+						"error"
+					);
+					isValid = false;
+				}
+
+				// Validate phone (9 digits for South Africa)
+				if (!phone) {
+					showValidationMessage(
+						$("#signup-phone-error"),
+						"Phone number is required",
+						"error"
+					);
+					isValid = false;
+				} else if (phone.length !== 9) {
+					showValidationMessage(
+						$("#signup-phone-error"),
+						"South African number must be 9 digits",
+						"error"
+					);
+					isValid = false;
+				}
+
+				// Validate email
+				if (!email) {
+					showValidationMessage(
+						$("#signup-email-error"),
+						"Email is required",
+						"error"
+					);
+					isValid = false;
+				} else if (!isValidEmail(email)) {
+					showValidationMessage(
+						$("#signup-email-error"),
+						"Please enter a valid email address",
+						"error"
+					);
+					isValid = false;
+				}
+
+				// Validate password
+				if (!password) {
+					showValidationMessage(
+						$("#signup-password-error"),
+						"Password is required",
+						"error"
+					);
+					isValid = false;
+				} else if (password.length < 6) {
+					showValidationMessage(
+						$("#signup-password-error"),
+						"Password must be at least 6 characters",
+						"error"
+					);
+					isValid = false;
+				}
+
+				// Validate password confirmation
+				if (!confirmPassword) {
+					showValidationMessage(
+						$("#signup-confirm-password-error"),
+						"Please confirm your password",
+						"error"
+					);
+					isValid = false;
+				} else if (password !== confirmPassword) {
+					showValidationMessage(
+						$("#signup-confirm-password-error"),
+						"Passwords do not match",
+						"error"
+					);
+					isValid = false;
+				}
+
+				// Check terms
+				if (!$("#terms").is(":checked")) {
+					showAlert(
+						"Terms Required",
+						"You must agree to the Terms of Service and Privacy Policy!",
+						"warning"
+					);
+					isValid = false;
+				}
+
+				if (!isValid) return;
+
+				// Store user data with username
+				const userData = {
+					username: username,
+					phone: "+27" + phone,
+					email: email,
+					password: password,
+				};
+
+				localStorage.setItem("moviesUser", JSON.stringify(userData));
+
+				// Show personalized success message in custom alert
 				showAlert(
-					"Welcome Back!",
-					`Great to see you again, ${userData.username}! Your movie journey continues with unlimited entertainment.`,
+					"Welcome to Movies!",
+					`Hello ${username}! Your account has been created successfully. You can now sign in and start enjoying unlimited movies and TV shows.`,
 					"success"
 				);
 
-				$("#signin-form")[0].reset();
+				switchToSignIn();
+				$("#signup-form")[0].reset();
+			});
 
-				// Redirect to dashboard in real app
-				window.location.href = "index.html";
-			} else {
-				showAlert(
-					"Login Failed",
-					"Invalid username or password! Please try again.",
-					"error"
-				);
+			// Sign In Form Submission
+			$("#signin-form").on("submit", function (e) {
+				e.preventDefault();
+
+				clearValidationMessages();
+
+				const username = $("#signin-username").val();
+				const password = $("#signin-password").val();
+
+				let isValid = true;
+
+				// Validate username
+				if (!username) {
+					showValidationMessage(
+						$("#signin-username-error"),
+						"Username is required",
+						"error"
+					);
+					isValid = false;
+				}
+
+				// Validate password
+				if (!password) {
+					showValidationMessage(
+						$("#signin-password-error"),
+						"Password is required",
+						"error"
+					);
+					isValid = false;
+				}
+
+				if (!isValid) return;
+
+				// Check credentials
+				const storedUser = localStorage.getItem("moviesUser");
+
+				if (storedUser) {
+					const userData = JSON.parse(storedUser);
+
+					if (
+						username === userData.username &&
+						password === userData.password
+					) {
+						// Store session with username
+						localStorage.setItem(
+							"moviesCurrentUser",
+							JSON.stringify({
+								username: userData.username,
+								phone: userData.phone,
+								email: userData.email,
+							})
+						);
+
+						// Remember me
+						if ($("#remember-me").is(":checked")) {
+							localStorage.setItem("moviesRememberMe", "true");
+						} else {
+							localStorage.removeItem("moviesRememberMe");
+						}
+
+						// Show personalized welcome back message in custom alert
+						showAlert(
+							"Welcome Back!",
+							`Great to see you again, ${userData.username}! Your movie journey continues with unlimited entertainment.`,
+							"success"
+						);
+
+						$("#signin-form")[0].reset();
+
+						// Redirect to dashboard in real app
+						window.location.href = "index.html";
+					} else {
+						showAlert(
+							"Login Failed",
+							"Invalid username or password! Please try again.",
+							"error"
+						);
+					}
+				} else {
+					showAlert(
+						"Account Not Found",
+						"No account found with that username. Please sign up first to create your Movies account.",
+						"info"
+					);
+				}
+			});
+
+			// Email validation
+			function isValidEmail(email) {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				return emailRegex.test(email);
 			}
-		} else {
-			showAlert(
-				"Account Not Found",
-				"No account found with that username. Please sign up first to create your Movies account.",
-				"info"
-			);
-		}
+
+			// Check for existing session
+			const currentUser = localStorage.getItem("moviesCurrentUser");
+			if (currentUser) {
+				const user = JSON.parse(currentUser);
+				console.log(`User ${user.username} is currently signed in.`);
+			}
+
+			// Pre-fill username if remember me was checked
+			const rememberMe = localStorage.getItem("moviesRememberMe");
+			if (rememberMe === "true" && currentUser) {
+				const userData = JSON.parse(localStorage.getItem("moviesUser"));
+				if (userData) {
+					$("#signin-username").val(userData.username);
+					$("#remember-me").prop("checked", true);
+				}
+			}
+
+			// Home Page: Display users name after sign in/sign up
+			const currentPage = window.location.pathname;
+			if (currentPage.includes("index.html")) {
+				const currentUser = localStorage.getItem("moviesCurrentUser");
+				if (currentUser) {
+					const user = JSON.parse(currentUser);
+					const welcomeElement = document.getElementById("welcomeUser");
+					if (welcomeElement) {
+						welcomeElement.textContent = `Welcome, ${user.username} (:`;
+					}
+				}
+			}
+		});
 	});
-
-	// Email validation
-	function isValidEmail(email) {
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		return emailRegex.test(email);
-	}
-
-	// Check for existing session
-	const currentUser = localStorage.getItem("moviesCurrentUser");
-	if (currentUser) {
-		const user = JSON.parse(currentUser);
-		console.log(`User ${user.username} is currently signed in.`);
-	}
-
-	// Pre-fill username if remember me was checked
-	const rememberMe = localStorage.getItem("moviesRememberMe");
-	if (rememberMe === "true" && currentUser) {
-		const userData = JSON.parse(localStorage.getItem("moviesUser"));
-		if (userData) {
-			$("#signin-username").val(userData.username);
-			$("#remember-me").prop("checked", true);
-		}
-	}
-
-	// Home Page: Display users name after sign in/sign up
-	const currentPage = window.location.pathname;
-	if (currentPage.includes("index.html")) {
-		const currentUser = localStorage.getItem("moviesCurrentUser");
-		if (currentUser) {
-			const user = JSON.parse(currentUser);
-			const welcomeElement = document.getElementById("welcomeUser");
-			if (welcomeElement) {
-				welcomeElement.textContent = `Welcome, ${user.username} (:`;
-			}
-		}
-	}
-});
+}
 
 //
 // =======================
@@ -529,8 +537,7 @@ function addToWatchlist(movie) {
 		method: "GET",
 		headers: {
 			accept: "application/json",
-			Authorization:
-				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+			Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
 		},
 	};
 
@@ -547,6 +554,10 @@ function addToWatchlist(movie) {
 			movieCards[i].querySelector(".card-title").textContent = movie.title;
 			movieCards[i].querySelector(".card-text").textContent =
 				movie.overview.slice(0, 60) + "...";
+			// Fix: dynamically set the href and data-id
+			const viewBtn = movieCards[i].querySelector(".viewDetailsBtn");
+			viewBtn.href = `./pages/(d)individualMoviePage.html?id=${movie.id}`;
+			viewBtn.dataset.id = movie.id;
 		}
 	});
 })();
@@ -562,10 +573,10 @@ function addToWatchlist(movie) {
 		method: "GET",
 		headers: {
 			accept: "application/json",
-			Authorization:
-				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+			Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
 		},
 	};
+
 	const response = await fetch(url, options);
 	const data = await response.json();
 	const popular = data.results.slice(0, 4);
@@ -579,14 +590,18 @@ function addToWatchlist(movie) {
 			movieCards[i].querySelector(".card-title").textContent = movie.title;
 			movieCards[i].querySelector(".card-text").textContent =
 				movie.overview.slice(0, 60) + "...";
+			// Fix: dynamically set the href and data-id
+			const viewBtn = movieCards[i].querySelector(".viewDetailsBtn");
+			viewBtn.href = `./pages/(d)individualMoviePage.html?id=${movie.id}`;
+			viewBtn.dataset.id = movie.id;
 		}
 	});
 })();
 
 //
-// =======================
+// ===============================
 //   MOVIE DETAILS PAGE (Mandre)
-// =======================
+// ===============================
 //
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -660,46 +675,65 @@ async function getMovieDetails() {
 	}
 }
 
-//
-// ===========================================
-//   WATCHLIST PAGE (v2? Mandre base code)
-// ===========================================
-//
+// =======================
+//  INDIVIDUAL MOVIE PAGE LOGIC
+// =======================
+document.addEventListener("DOMContentLoaded", async () => {
+	const movieImage = document.getElementById("movieImage");
+	const movieTitle = document.getElementById("movieTitle");
+	const movieYear = document.getElementById("movieYear");
+	const movieGenre = document.getElementById("movieGenre");
+	const movieRating = document.getElementById("movieRating");
+	const movieDescription = document.getElementById("movieDescription");
+	const addToWatchlistBtn = document.getElementById("addToWatchlistBtn");
 
-// const watchlistContainer = document.getElementById("watchlistContainer");
-// if (watchlistContainer) {
-// 	let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
-// 	if (watchlist.length === 0) {
-// 		watchlistContainer.innerHTML = "<p>Your watchlist is empty.</p>";
-// 	} else {
-// 		watchlist.forEach((Movie) => {
-// 			const card = document.createElement("div");
-// 			card.className = "card";
-// 			card.innerHTML = `
-//         <img src="${Movie.image}" class="card-img-top" alt="Image Not Found">
-//         <h5 class="card-title">${Movie.title}</h5>
-//         <p class="card-text">Rating: ${Movie.rating}</p>
-//         <a href="#" class="btn-primary">Remove From Watchlist</a>
-//       `;
+	// Only run on the individual page
+	if (!movieTitle) return;
 
-// 			card.addEventListener("click", (e) => {
-// 				if (!e.target.classList.contains("btn-primary")) {
-// 					window.location.href = `(d)individualMoviePage.html?id=${Movie.id}`;
-// 				} else {
-// 					e.preventDefault();
-// 					let updated = JSON.parse(localStorage.getItem("watchlist")) || [];
-// 					updated = updated.filter((item) => item.id !== Movie.id);
-// 					localStorage.setItem("watchlist", JSON.stringify(updated));
-// 					card.remove();
-// 					if (updated.length === 0)
-// 						watchlistContainer.innerHTML = "<p>Your watchlist is empty.</p>";
-// 				}
-// 			});
+	// Get movie ID from URL
+	const params = new URLSearchParams(window.location.search);
+	const movieId = params.get("id");
 
-// 			watchlistContainer.appendChild(card);
-// 		});
-// 	}
-// }
+	if (!movieId) {
+		movieTitle.textContent = "Movie Not Found";
+		return;
+	}
+
+	try {
+		const response = await fetch(
+			`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+			{
+				headers: {
+					accept: "application/json",
+					Authorization:
+						"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+				},
+			}
+		);
+		const movie = await response.json();
+
+		movieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+		movieTitle.textContent = movie.title;
+		movieYear.textContent = movie.release_date.split("-")[0];
+		movieGenre.textContent = movie.genres.map((g) => g.name).join(", ");
+		movieRating.textContent = `⭐ ${movie.vote_average.toFixed(1)}`;
+		movieDescription.textContent = movie.overview;
+
+		addToWatchlistBtn.addEventListener("click", () => {
+			addToWatchlist({
+				id: movie.id,
+				image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+				year: movie.release_date.split("-")[0],
+				title: movie.title,
+				rating: movie.vote_average,
+				genre: movie.genres.map((g) => g.name).join(", "),
+				descirption: movie.overview,
+			});
+		});
+	} catch (error) {
+		console.error("Failed to load movie details:", error);
+	}
+});
 
 //
 // ===========================================
@@ -762,10 +796,70 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
+// =======================
+//  INDIVIDUAL MOVIE PAGE LOGIC
+// =======================
+document.addEventListener("DOMContentLoaded", async () => {
+	const movieImage = document.getElementById("movieImage");
+	const movieTitle = document.getElementById("movieTitle");
+	const movieYear = document.getElementById("movieYear");
+	const movieGenre = document.getElementById("movieGenre");
+	const movieRating = document.getElementById("movieRating");
+	const movieDescription = document.getElementById("movieDescription");
+	const addToWatchlistBtn = document.getElementById("addToWatchlistBtn");
+
+	// Only run on the individual page
+	if (!movieTitle) return;
+
+	// Get movie ID from URL
+	const params = new URLSearchParams(window.location.search);
+	const movieId = params.get("id");
+
+	if (!movieId) {
+		movieTitle.textContent = "Movie Not Found";
+		return;
+	}
+
+	try {
+		const response = await fetch(
+			`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+			{
+				headers: {
+					accept: "application/json",
+					Authorization:
+						"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+				},
+			}
+		);
+		const movie = await response.json();
+
+		movieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+		movieTitle.textContent = movie.title;
+		movieYear.textContent = movie.release_date.split("-")[0];
+		movieGenre.textContent = movie.genres.map((g) => g.name).join(", ");
+		movieRating.textContent = `⭐ ${movie.vote_average.toFixed(1)}`;
+		movieDescription.textContent = movie.overview;
+
+		addToWatchlistBtn.addEventListener("click", () => {
+			addToWatchlist({
+				id: movie.id,
+				image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+				year: movie.release_date.split("-")[0],
+				title: movie.title,
+				rating: movie.vote_average,
+				genre: movie.genres.map((g) => g.name).join(", "),
+				descirption: movie.overview,
+			});
+		});
+	} catch (error) {
+		console.error("Failed to load movie details:", error);
+	}
+});
+
 //
-// ===========================================
+// ====================================================================================================================
 //   MOVIE LIBRARY GENRE SECTIONS ("Aiden") (Filler code until we get Aiden's actual code for the Movie Library Page)
-// ===========================================
+// ====================================================================================================================
 //
 
 const API_KEY = "a6c2afad200f84797a69b04f2d607b70";
@@ -845,3 +939,9 @@ async function loadMoviesByGenre() {
 if (window.location.pathname.includes("(c)movieLibraryPage.html")) {
 	loadMoviesByGenre();
 }
+
+//
+// ========================================================
+//   MOVIE LIBRARY GENRE SECTIONS ("Aiden") [actual code]
+// ========================================================
+//
