@@ -1,59 +1,27 @@
 <!DOCTYPE html>
-<!-- Doctype-->
 <html lang="en">
-	<!-- HTML Declaration -->
 	<head>
-		<!-- Character Set -->
 		<meta charset="UTF-8" />
-
-		<!-- Compatibility -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-		<!-- Viewport -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Aiden Renwick 251093" />
+		<meta name="Keywords" content=" " />
+		<!--What you want to pop up when searched  -->
+		<title>Library</title>
 
-		<!-- Author Name -->
-		<meta name="author" content="(Name_Surname_StudentNumber)" />
-
-		<!-- Keywords -->
-		<meta
-			name="keywords"
-			content="HTML, CSS, JavaScript, PHP, js, css, Name_Surname_StudentNumber" />
-
-		<title>Template</title>
-
-		<!-- Font Links -->
-
-		<!-- Bootstrap Link -->
+		<!--Link to css stylesheet-->
+		<link rel="stylesheet" href="../css/main.css" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
 			rel="stylesheet"
 			integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
 			crossorigin="anonymous" />
-
-		<!-- CSS Link -->
-		<link rel="stylesheet" href="../css/mandre.css" />
-		<!-- <link rel="stylesheet" href="../css/main.css" /> -->
-		<!-- Font Links -->
-		<style>
-			@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-		</style>
 	</head>
 
-	<body class="body">
-		<!-- Background -->
-		<section>
-			<div class="background-container">
-				<div class="background-overlay"></div>
-				<div class="background-pattern"></div>
-			</div>
-		</section>
-
-		<!-- Nav Bar -->
-		<header class="navigation_bar">
+	<body>
+		<header>
 			<nav class="navbar navbar-expand-lg navBack">
 				<div class="container-fluid position-relative">
-					<a class="navbar-brand montserrat-h1" href="../index.html">Navbar</a>
+					<a class="navbar-brand" href="./index.html">Navbar</a>
 					<form
 						class="d-flex position-absolute top-40 start-50 translate-middle-x"
 						role="search"
@@ -80,83 +48,92 @@
 						id="navbarSupportedContent">
 						<ul class="navbar-nav mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link roboto-p" href="../index.html">
-									<i class="fa-solid fa-house"></i><i>Home</i>
-								</a>
+								<a class="nav-link active" href="index.html">Home</a>
 							</li>
 							<li class="nav-item">
-								<a
-									class="nav-link roboto-p"
-									href="../pages/(c)movieLibraryPage.html">
-									<i class="fa-solid fa-film"></i><i>Movies</i></a
+								<a class="nav-link" href="(c)movieLibraryPage.html">Movies</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="(e)movieWatchlistPage.html"
+									>Watch List</a
 								>
 							</li>
 							<li class="nav-item">
-								<a
-									class="nav-link roboto-p"
-									href="../pages/(e)movieWatchlistPage.html">
-									<i class="fa-solid fa-bookmark"></i>
-									<i>Watch List</i></a
-								>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link roboto-p"
-									href="../pages/(a)signIn-signUp.html">
-									<i class="fa-solid fa-circle-user"></i><i>Sign In</i>
-								</a>
+								<a class="nav-link" href="(a)signIn-signUp.html">Sign In</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</header>
-		<!-- All Genres -->
-		<div class="container-fluid">
-			<h1 class="genreheading">Horror</h1>
-			<div id="movieCards_Horror" class="cardcontainer"></div>
+
+		<!-- Filter -->
+		<div class="searchFilter">
+			<h1>Filter Search</h1>
+			<input
+				onkeyup="filterList()"
+				id="search"
+				type="text"
+				placeholder="Search..." />
+			<ul id="menu">
+				<li><a href="#">Family</a></li>
+				<li><a href="#">Crime</a></li>
+				<li><a href="#">Animation</a></li>
+				<li><a href="#">Sci-Fi</a></li>
+				<li><a href="#">Western</a></li>
+				<li><a href="#">Horror</a></li>
+				<li><a href="#">Drama</a></li>
+			</ul>
 		</div>
-		<div class="container-fluid">
-			<h1 class="genreheading">Action</h1>
-			<div id="movieCards_Action" class="carousel"></div>
-		</div>
-		<div class="container-fluid">
-			<h1 class="genreheading">Crime</h1>
-			<div id="movieCards_Crime" class="cardcontainer"></div>
-		</div>
-		<div class="container-fluid">
-			<h1 class="genreheading">Animation</h1>
-			<div id="movieCards_Animation" class="cardcontainer"></div>
-		</div>
-		<div class="container-fluid">
-			<h1 class="genreheading">Science Fiction</h1>
-			<div id="movieCards_Science Fiction" class="cardcontainer"></div>
-		</div>
-		<div class="container-fluid">
-			<h1 class="genreheading">Western</h1>
-			<div id="movieCards_Western" class="cardcontainer"></div>
-		</div>
-		<div class="container-fluid">
-			<h1 class="genreheading">Drama</h1>
-			<div id="movieCards_Drama" class="cardcontainer"></div>
-		</div>
-		<div class="container-fluid">
+		<script type="text/JavaScript" src="js/script.js"></script>
+
+		<!-- All of the Website Genres -->
+
+		<div class="movie-section">
 			<h1 class="genreheading">Family</h1>
 			<div id="movieCards_Family" class="cardcontainer"></div>
 		</div>
+		<div class="movie-section">
+			<h1 class="genreheading">Crime</h1>
+			<div id="movieCards_Crime" class="cardcontainer"></div>
+		</div>
+		<div class="movie-section">
+			<h1 class="genreheading">Animation</h1>
+			<div id="movieCards_Animation" class="cardcontainer"></div>
+		</div>
+		<div class="movie-sectiond">
+			<h1 class="genreheading">Science Fiction</h1>
+			<div id="movieCards_Science Fiction" class="cardcontainer"></div>
+		</div>
+		<div class="movie-section">
+			<h1 class="genreheading">Western</h1>
+			<div id="movieCards_Western" class="cardcontainer"></div>
+		</div>
+		<div class="movie-section">
+			<h1 class="genreheading">Horror</h1>
+			<div id="movieCards_Horror" class="cardcontainer"></div>
+		</div>
+		<div class="movie-section">
+			<h1 class="genreheading">Drama</h1>
+			<div id="movieCards_Drama" class="cardcontainer"></div>
+		</div>
 
-		<!-- Fontawesome Link -->
-		<script
-			src="https://kit.fontawesome.com/900fc3b7f3.js"
-			crossorigin="anonymous"></script>
-		<!-- Bootstrap Script Link -->
+		<div class="watchlisttext">
+			<div class="container-fluid">
+				<div id="watchlistContainer" class="cardcontainer"></div>
+			</div>
+		</div>
+
+		<div id="MoviesContainer"></div>
+		<button id="filterActionBtn">Filter By Genre</button>
+
+		<div id="movieCards_Action"></div>
+
+		<!--Link to JavaScript stylesheet-->
+		<script src="../js/testScript2.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
 			crossorigin="anonymous"></script>
-		<!-- JS Script Link -->
-		<!-- <script src="../js/testScript.js"></script> -->
-		<script src="../js/mandreScript.js"></script>
-		<!-- <script src="../js/script.js"></script> -->
 	</body>
 </html>
