@@ -1,593 +1,520 @@
-$(document).ready(function () {
-	// Custom Alert System
-	function showAlert(title, message, type = "info") {
-		const alert = $("#custom-alert");
-		const alertIcon = alert.find(".alert-icon");
-		const alertTitle = alert.find(".alert-title");
-		const alertMessage = alert.find(".alert-message");
+//Filter for homepage
+function filterList() {
+    var filterValue, input, ul, li, i;
 
-		// Set content
-		alertTitle.text(title);
-		alertMessage.text(message);
+    input = document.getElementById('search');
+    filterValue = input.value.toUpperCase();
+    ul = document.getElementById('menu');
+    li = ul.getElementsByTagName('li');
 
-		// Set icon and color based on type
-		alertIcon.removeClass("success error warning info");
-		switch (type) {
-			case "success":
-				alertIcon.addClass("success").html("✓");
-				break;
-			case "error":
-				alertIcon.addClass("error").html("✕");
-				break;
-			case "warning":
-				alertIcon.addClass("warning").html("!");
-				break;
-			case "info":
-				alertIcon.addClass("info").html("i");
-				break;
-		}
+    for (i = 0; i < li.length; i++) {
+        var a = li[i].getElementsByTagName('a')[0];
 
-		// Show alert
-		alert.addClass("show");
-	}
+        if (a && a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+	
+	
+	
+	
+	class Movies {
+  constructor(id, title, description, image, year, genre, rating) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.image = image;
+    this.year = year;
+    this.genre = genre;
+    this.rating = rating;
+  }
 
-	// Close alert
-	$(".alert-close-btn").on("click", function () {
-		$("#custom-alert").removeClass("show");
-	});
+  createCard() {
+    const card = document.createElement("div");
+    card.className = "movie-card";
 
-	// Close alert when clicking outside
-	$("#custom-alert").on("click", function (e) {
-		if (e.target === this) {
-			$(this).removeClass("show");
-		}
-	});
+    // Image element
+    const img = document.createElement("img");
+    img.src = this.image;
+    img.alt = `${this.title} Poster`;
+    img.className = "movie-image";
 
-	// Form toggle functionality
-	$("#switch-to-signup").on("click", function (e) {
-		e.preventDefault();
-		switchToSignUp();
-	});
+    // Title element
+    const titleElem = document.createElement("h3");
+    titleElem.textContent = this.title;
+    titleElem.className = "movie-title";
 
-	$("#switch-to-signin").on("click", function (e) {
-		e.preventDefault();
-		switchToSignIn();
-	});
+    // Year element
+    const yearElem = document.createElement("p");
+    yearElem.textContent = this.year;
+    yearElem.className = "movie-year";
 
-	function switchToSignIn() {
-		$("#signin-form").addClass("active");
-		$("#signup-form").removeClass("active");
-		clearValidationMessages();
-	}
+    // Append elements
+    card.appendChild(img);
+    card.appendChild(titleElem);
+    card.appendChild(yearElem);
 
-	function switchToSignUp() {
-		$("#signup-form").addClass("active");
-		$("#signin-form").removeClass("active");
-		clearValidationMessages();
-	}
+    return card;
+  }
+}
 
-	// Clear validation messages
-	function clearValidationMessages() {
-		$(".error-message").hide();
-		$(".success-message").hide();
-		$(".warning-message").hide();
-		$(".info-message").hide();
-	}
-
-	// Phone number formatting (9 digits for South Africa)
-	$('input[type="tel"]').on("input", function () {
-		let phone = $(this).val().replace(/\D/g, "");
-		if (phone.length > 9) {
-			phone = phone.substring(0, 9);
-		}
-		$(this).val(phone);
-	});
-
-	// Real-time password confirmation validation
-	$("#signup-confirm-password").on("input", function () {
-		const password = $("#signup-password").val();
-		const confirmPassword = $(this).val();
-
-		if (confirmPassword && password !== confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Passwords do not match",
-				"error"
-			);
-		} else if (confirmPassword && password === confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Passwords match!",
-				"success"
-			);
-		} else {
-			$("#signup-confirm-password-error").hide();
-		}
-	});
-
-	// Real-time password length validation
-	$("#signup-password").on("input", function () {
-		const password = $(this).val();
-
-		if (password && password.length < 6) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password must be at least 6 characters",
-				"error"
-			);
-		} else if (password && password.length >= 6) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password strength: Good",
-				"success"
-			);
-		} else {
-			$("#signup-password-error").hide();
-		}
-	});
-
-	// Phone number validation (9 digits)
-	$('input[type="tel"]').on("blur", function () {
-		const phone = $(this).val();
-		if (phone && phone.length !== 9) {
-			const errorId = $(this).attr("id") + "-error";
-			$("#" + errorId)
-				.text("South African number must be 9 digits")
-				.show();
-		}
-	});
-
-	// Show validation message
-	function showValidationMessage(element, message, type = "error") {
-		element.removeClass(
-			"error-message warning-message success-message info-message"
-		);
-
-		switch (type) {
-			case "error":
-				element.addClass("error-message");
-				break;
-			case "warning":
-				element.addClass("warning-message");
-				break;
-			case "success":
-				element.addClass("success-message");
-				break;
-			case "info":
-				element.addClass("info-message");
-				break;
-		}
-
-		element.text(message).show();
-	}
-
-	// Sign Up Form Submission
-	$("#signup-form").on("submit", function (e) {
-		e.preventDefault();
-
-		clearValidationMessages();
-
-		const username = $("#signup-username").val();
-		const phone = $("#signup-phone").val();
-		const email = $("#signup-email").val();
-		const password = $("#signup-password").val();
-		const confirmPassword = $("#signup-confirm-password").val();
-
-		let isValid = true;
-
-		// Validate username
-		if (!username) {
-			showValidationMessage(
-				$("#signup-username-error"),
-				"Username is required",
-				"error"
-			);
-			isValid = false;
-		} else if (username.length < 3) {
-			showValidationMessage(
-				$("#signup-username-error"),
-				"Username must be at least 3 characters",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate phone (9 digits for South Africa)
-		if (!phone) {
-			showValidationMessage(
-				$("#signup-phone-error"),
-				"Phone number is required",
-				"error"
-			);
-			isValid = false;
-		} else if (phone.length !== 9) {
-			showValidationMessage(
-				$("#signup-phone-error"),
-				"South African number must be 9 digits",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate email
-		if (!email) {
-			showValidationMessage(
-				$("#signup-email-error"),
-				"Email is required",
-				"error"
-			);
-			isValid = false;
-		} else if (!isValidEmail(email)) {
-			showValidationMessage(
-				$("#signup-email-error"),
-				"Please enter a valid email address",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate password
-		if (!password) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password is required",
-				"error"
-			);
-			isValid = false;
-		} else if (password.length < 6) {
-			showValidationMessage(
-				$("#signup-password-error"),
-				"Password must be at least 6 characters",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate password confirmation
-		if (!confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Please confirm your password",
-				"error"
-			);
-			isValid = false;
-		} else if (password !== confirmPassword) {
-			showValidationMessage(
-				$("#signup-confirm-password-error"),
-				"Passwords do not match",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Check terms
-		if (!$("#terms").is(":checked")) {
-			showAlert(
-				"Terms Required",
-				"You must agree to the Terms of Service and Privacy Policy!",
-				"warning"
-			);
-			isValid = false;
-		}
-
-		if (!isValid) return;
-
-		// Store user data with username
-		const userData = {
-			username: username,
-			phone: "+27" + phone,
-			email: email,
-			password: password,
-		};
-
-		localStorage.setItem("moviesUser", JSON.stringify(userData));
-
-		// Show personalized success message in custom alert
-		showAlert(
-			"Welcome to Movies!",
-			`Hello ${username}! Your account has been created successfully. You can now sign in and start enjoying unlimited movies and TV shows.`,
-			"success"
-		);
-
-		switchToSignIn();
-		$("#signup-form")[0].reset();
-	});
-
-	// Sign In Form Submission
-	$("#signin-form").on("submit", function (e) {
-		e.preventDefault();
-
-		clearValidationMessages();
-
-		const username = $("#signin-username").val();
-		const password = $("#signin-password").val();
-
-		let isValid = true;
-
-		// Validate username
-		if (!username) {
-			showValidationMessage(
-				$("#signin-username-error"),
-				"Username is required",
-				"error"
-			);
-			isValid = false;
-		}
-
-		// Validate password
-		if (!password) {
-			showValidationMessage(
-				$("#signin-password-error"),
-				"Password is required",
-				"error"
-			);
-			isValid = false;
-		}
-
-		if (!isValid) return;
-
-		// Check credentials
-		const storedUser = localStorage.getItem("moviesUser");
-
-		if (storedUser) {
-			const userData = JSON.parse(storedUser);
-
-			if (username === userData.username && password === userData.password) {
-				// Store session with username
-				localStorage.setItem(
-					"moviesCurrentUser",
-					JSON.stringify({
-						username: userData.username,
-						phone: userData.phone,
-						email: userData.email,
-					})
-				);
-
-				// Remember me
-				if ($("#remember-me").is(":checked")) {
-					localStorage.setItem("moviesRememberMe", "true");
-				} else {
-					localStorage.removeItem("moviesRememberMe");
-				}
-
-				// Show personalized welcome back message in custom alert
-				showAlert(
-					"Welcome Back!",
-					`Great to see you again, ${userData.username}! Your movie journey continues with unlimited entertainment.`,
-					"success"
-				);
-
-				$("#signin-form")[0].reset();
-
-				// Redirect to dashboard in real app
-				// window.location.href = 'dashboard.html';
-			} else {
-				showAlert(
-					"Login Failed",
-					"Invalid username or password! Please try again.",
-					"error"
-				);
-			}
-		} else {
-			showAlert(
-				"Account Not Found",
-				"No account found with that username. Please sign up first to create your Movies account.",
-				"info"
-			);
-		}
-	});
-
-	// Email validation
-	function isValidEmail(email) {
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		return emailRegex.test(email);
-	}
-
-	// Check for existing session
-	const currentUser = localStorage.getItem("moviesCurrentUser");
-	if (currentUser) {
-		const user = JSON.parse(currentUser);
-		console.log(`User ${user.username} is currently signed in.`);
-	}
-
-	// Pre-fill username if remember me was checked
-	const rememberMe = localStorage.getItem("moviesRememberMe");
-	if (rememberMe === "true" && currentUser) {
-		const userData = JSON.parse(localStorage.getItem("moviesUser"));
-		if (userData) {
-			$("#signin-username").val(userData.username);
-			$("#remember-me").prop("checked", true);
-		}
-	}
-
-	// // Home Page: Display users name after sign in/sign up
-	// const currentPage = window.location.pathname;
-	// if (currentPage.includes("index.html")) {
-	// 	const currentUser = localStorage.getItem("moviesCurrentUser");
-	// 	if (currentUser) {
-	// 		const user = JSON.parse(currentUser);
-	// 		const welcomeElement = document.getElementById("welcomeUser");
-	// 		if (welcomeElement) {
-	// 			welcomeElement.textContent = `Welcome, ${user.username} (:`;
-	// 		}
-	// 	}
-	// }
-});
-
-// API Fetch and Integration:
-
-// Home Page Carousel
-
+// key = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8"
 !(async function () {
-	const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`;
 	const options = {
 		method: "GET",
 		headers: {
 			accept: "application/json",
 			Authorization:
-				"Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+		},
+	};
+
+	let data = await fetch(
+		"https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+		options
+	)
+		.then((response) => response.json())
+		.then((result) => {
+			return result;
+		})
+		.catch((err) => console.error(err));
+
+	console.log(data);
+	console.log(data.results[0].title);
+
+	const Genre = {
+		method: "GET",
+		headers: {
+			accept: "application/json",
+			Authorization:
+				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+		},
+	};
+
+	let genredata = await fetch(
+		"https://api.themoviedb.org/3/genre/movie/list?language=en",
+		Genre
+	)
+		.then((response) => response.json())
+		.then((result) => {
+			return result;
+		})
+		.catch((err) => console.error(err));
+
+	console.log(genredata);
+
+	let movielist = [];
+
+	for (let i = 0; i < data.results.length; i++) {
+		let image = `https://image.tmdb.org/t/p/w500${data.results[i].poster_path}`;
+		let id = data.results[i].id;
+		let title = data.results[i].title;
+		let descirption = data.results[i].overview;
+		let year = data.results[i].release_date;
+		let genreid = data.results[i].genre_ids[0];
+		let genrename = "";
+		let rating = data.results[i].vote_average;
+
+		for (let k = 0; k < genredata.genres.length; k++) {
+			if (genreid == genredata.genres[k].id) {
+				genrename = genredata.genres[k].name;
+				break;
+			}
+		}
+
+		movielist.push(
+			new Movies(image, year, title, rating, genrename, descirption, id)
+		);
+	}
+
+	console.log("all movies:", movielist);
+
+	movielist.forEach((Movie) => {
+		const containerid = `movieCards_${Movie.genre}`;
+		const container = document.getElementById(containerid);
+		let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+		const isInWatchlist = watchlist.some((item) => item.id === Movie.id);
+
+		if (container) {
+			const card = document.createElement("div");
+			card.className = "card";
+			card.innerHTML = `
+      <img src="${Movie.image}" class="card-img-top" alt="Image Not Found">
+      <h5 class="card-title">${Movie.title}</h5>
+      <p class="card-text">Rating: ${Movie.rating}</p>
+      <a href="#" class="btn-primary" ${isInWatchlist ? "disabled" : ""}>
+        ${isInWatchlist ? "Added" : "Add to Watchlist"}
+      </a>
+    `;
+
+			card.addEventListener("click", (e) => {
+				if (!e.target.classList.contains("btn-primary")) {
+					window.location.href = `(d)individualMoviePage.html?id=${Movie.id}`;
+				} else {
+					e.preventDefault();
+					addToWatchlist(Movie);
+					e.target.textContent = "Added";
+					e.target.disabled = true;
+				}
+			});
+
+			container.appendChild(card);
+		}
+	});
+})();
+
+
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const movieId = urlParams.get("id");
+
+async function getMovieDetails() {
+	const options2 = {
+		method: "GET",
+		headers: {
+			accept: "application/json",
+			Authorization:
+				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
 		},
 	};
 
 	try {
-		const response = await fetch(url, options);
-		const data = await response.json();
+		const response = await fetch(
+			"https://api.themoviedb.org/3/movie/${movieId}?language=en-US",
+			options2
+		);
+		const movie = await response.json();
 
-		if (!data.results) {
-			console.error("No movie data found.");
-			return;
+		document.getElementById("movieTitle").textContent = movie.title;
+		document.getElementById(
+			"movieImage"
+		).src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+		document.getElementById(
+			"movieRating"
+		).textContent = `Rating: ${movie.vote_average}`;
+		document.getElementById("movieDescription").textContent = movie.overview;
+		document.getElementById("movieGenre").textContent = movie.genres
+			.map((g) => g.name)
+			.join(", ");
+		document.getElementById("movieYear").textContent = movie.release_date;
+
+		const backdrop = document.querySelector(".movie-backdrop");
+		if (backdrop) {
+			backdrop.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
 		}
 
-		const movies = data.results.slice(4, 8);
-
-		const posterUrls = movies
-			.filter((movie) => movie.poster_path)
-			.map(
-				(movie) => `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-			);
-
-		console.log("Poster URLs:", posterUrls);
-
-		const carouselInner = document.querySelector(
-			"#carouselExampleCaptions .carousel-inner"
-		);
-		const carouselIndicators = document.querySelector(
-			"#carouselExampleCaptions .carousel-indicators"
-		);
-
-		carouselInner.innerHTML = "";
-		carouselIndicators.innerHTML = "";
-
-		posterUrls.forEach((url, index) => {
-			const itemDiv = document.createElement("div");
-			itemDiv.classList.add("carousel-item");
-			if (index === 0) itemDiv.classList.add("active");
-
-			const img = document.createElement("img");
-			img.src = url;
-			img.classList.add("d-block", "w-100");
-			img.alt = `Movie Poster ${index + 1}`;
-
-			itemDiv.appendChild(img);
-
-			const captionDiv = document.createElement("div");
-			captionDiv.classList.add("carousel-caption", "d-none", "d-md-block");
-			captionDiv.innerHTML = `<h5 class="montserrat-h1">${
-				movies[index].title
-			}</h5> <p class="roboto-p">
-<p class="roboto-p">
-<p class="roboto-p">${
-				movies[index].overview
-					? movies[index].overview.slice(0, 250) + "..."
-					: "No description available."
-			}</p>
-`;
-			itemDiv.appendChild(captionDiv);
-
-			carouselInner.appendChild(itemDiv);
-
-			const indicator = document.createElement("button");
-			indicator.type = "button";
-			indicator.setAttribute("data-bs-target", "#carouselExampleCaptions");
-			indicator.setAttribute("data-bs-slide-to", index);
-			indicator.setAttribute("aria-label", `Slide ${index + 1}`);
-			if (index === 0) {
-				indicator.classList.add("active");
-				indicator.setAttribute("aria-current", "true");
-			}
-			carouselIndicators.appendChild(indicator);
-		});
-	} catch (error) {
-		console.error("Error fetching data:", error);
+	
+	} catch (err) {
+		console.error(err);
 	}
-})();
+}
 
-// Home Page: Top Rated section
+getMovieDetails();
 
-!(async function () {
-	const url =
-		"https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
-	const options = {
-		method: "GET",
-		headers: {
-			accept: "application/json",
-			Authorization:
-				"Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
-		},
-	};
-	const response = await fetch(url, options);
-	const data = await response.json();
+function addToWatchlist(movie) {
+	let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
-	console.log(data);
+	const exists = watchlist.some((item) => item.id === movie.id);
+	if (!exists) {
+		watchlist.push(movie);
+		localStorage.setItem("watchlist", JSON.stringify(watchlist));
+	} else {
+		alert(`${movie.title} is already in your watchlist.`);
+	}
+	console.log("Current Watchlist:", watchlist);
+}
 
-	const topRated = data.results.slice(0, 4);
 
-	console.log(topRated);
 
-	const topRatedPosters = topRated
-		.filter((movie) => movie.poster_path)
-		.map((movie) => `https://image.tmdb.org/t/p/original${movie.poster_path}`);
+let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+const container = document.getElementById("watchlistContainer");
 
-	console.log(topRatedPosters);
+console.log("Current Watchlist:", watchlist);
 
-	const movieCards = document.querySelectorAll(".movieCard");
+if (watchlist.length === 0) {
+	container.innerHTML = "<p>Movie Name .</p>";
+} else {
+	watchlist.forEach((Movie) => {
+		const card = document.createElement("div");
+		card.className = "card";
+		card.innerHTML = `
+    <img src="${Movie.image}" class="card-img-top" alt="Image Not Found">
+    <h5 class="card-title">${Movie.title}</h5>
+    <p class="card-text">Rating: ${Movie.rating}</p>
+    <a href="#" class="btn-primary">Remove From Watchlist</a>
+  `;
 
-	topRated.forEach((movie, index) => {
-		if (movieCards[index]) {
-			const img = movieCards[index].querySelector("img");
-			img.src = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
-			img.alt = movie.title;
+		card.addEventListener("click", (e) => {
+			if (!e.target.classList.contains("btn-primary")) {
+				window.location.href = `(d)individualMoviePage.html?id=${Movie.id}`;
+			} else {
+				e.preventDefault();
 
-			const title = movieCards[index].querySelector(".card-title");
-			title.textContent = movie.title;
+				let updatedWatchlist =
+					JSON.parse(localStorage.getItem("watchlist")) || [];
+				updatedWatchlist = updatedWatchlist.filter(
+					(item) => item.id !== Movie.id
+				);
+				localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
 
-			const description = movieCards[index].querySelector(".card-text");
-			description.textContent = movie.overview.slice(0, 30) + "...";
-		}
+				card.remove();
+
+				if (updatedWatchlist.length === 0) {
+					container.innerHTML = "<p>Your watchlist is empty.</p>";
+				}
+			}
+		});
+
+		container.appendChild(card);
 	});
-})();
+}
 
-// Home Page: Popular section
+document.getElementById('filterRatingBtn').addEventListener('click', () => {
+  const filteredMovies = movielist.filter(movie => movie.rating >= 7);
+  
 
-!(async function () {
-	const url =
-		"https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
-	const options = {
-		method: "GET",
-		headers: {
-			accept: "application/json",
-			Authorization:
-				"Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
-		},
-	};
-	const response = await fetch(url, options);
-	const data = await response.json();
+  document.querySelectorAll('.card').forEach(card => card.remove());
 
-	console.log(data);
+  
+  filteredMovies.forEach((Movie) => {
+    const containerId = `movieCards_${Movie.genre}`;
+    const container = document.getElementById(containerId);
+    if (container) {
+      const card = Movie.createCard();
 
-	const popular = data.results.slice(0, 4);
+      
+      card.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("btn-primary")) {
+          window.location.href = `(d)individualMoviePage.html?id=${Movie.id}`;
+        } else {
+          e.preventDefault();
+          addToWatchlist(Movie);
+          e.target.textContent = "Added";
+          e.target.disabled = true;
+        }
+      });
 
-	console.log(popular);
+      container.appendChild(card);
+    }
+  });
+});
 
-	const popularPosters = popular
-		.filter((movie) => movie.poster_path)
-		.map((movie) => `https://image.tmdb.org/t/p/original${movie.poster_path}`);
+document.getElementById('filterActionBtn').addEventListener('click', () => {
+  
+  const filteredMovies = movielist.filter(movie => movie.genre === 'Action');
 
-	console.log(popularPosters);
+  
+  document.querySelectorAll('.card').forEach(card => card.remove());
 
-	const movieCards = document.querySelectorAll(".movieCardPopular");
 
-	popular.forEach((movie, index) => {
-		if (movieCards[index]) {
-			const img = movieCards[index].querySelector("img");
-			img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-			img.alt = movie.title;
+  filteredMovies.forEach((Movie) => {
+    const containerId = `movieCards_${Movie.genre}`;
+    const container = document.getElementById(containerId);
+    if (container) {
+      const card = Movie.createCard();
 
-			const title = movieCards[index].querySelector(".card-title");
-			title.textContent = movie.title;
+      
+      card.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("btn-primary")) {
+          window.location.href = `(d)individualMoviePage.html?id=${Movie.id}`;
+        } else {
+          e.preventDefault();
+          addToWatchlist(Movie);
+          e.target.textContent = "Added";
+          e.target.disabled = true;
+        }
+      });
 
-			const description = movieCards[index].querySelector(".card-text");
-			description.textContent = movie.overview.slice(0, 30) + "...";
+      container.appendChild(card);
+    }
+  });
+});
+
+
+const movielist = [
+  {
+    id: 1,
+    title: "Action Movie 1",
+    genre: "Action",
+    createCard: function() {
+      const card = document.createElement("div");
+      card.className = "card mb-3";
+      card.innerHTML = `
+        <div class="card-body">
+          <h5 class="card-title">${this.title}</h5>
+          <button class="btn btn-primary">Add to Watchlist</button>
+        </div>
+      `;
+      return card;
+    }
+  },
+  {
+    id: 2,
+    title: "Comedy Movie 1",
+    genre: "Comedy",
+    createCard: function() {
+      const card = document.createElement("div");
+      card.className = "card mb-3";
+      card.innerHTML = `
+        <div class="card-body">
+          <h5 class="card-title">${this.title}</h5>
+          <button class="btn btn-primary">Add to Watchlist</button>
+        </div>
+      `;
+      return card;
+    }
+  },
+  {
+    id: 3,
+    title: "Action Movie 2",
+    genre: "Action",
+    createCard: function() {
+      const card = document.createElement("div");
+      card.className = "card mb-3";
+      card.innerHTML = 
+        <div class="card-body">
+          <h5 class="card-title">${this.title}</h5>
+          <button class="btn btn-primary">Add to Watchlist</button>
+        </div>;
+      return card;
+    }
+  },
+
+];
+
+
+function addToWatchlist(movie) {
+  alert(`Added "${movie.title}" to watchlist!`);
+}
+
+
+document.getElementById('filterActionBtn').addEventListener('click', () => {
+
+  const filteredMovies = movielist.filter(movie => movie.genre === 'Action');
+
+
+  document.querySelectorAll('.card').forEach(card => card.remove());
+
+ 
+  const container = document.getElementById('MoviesContainer');
+
+ 
+  filteredMovies.forEach((Movie) => {
+    const card = Movie.createCard();
+
+
+    card.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("btn-primary")) {
+        
+        window.location.href = `individualMoviePage.html?id=${Movie.id}`;
+      } else {
+       
+        e.preventDefault();
+        addToWatchlist(Movie);
+        e.target.textContent = "Added";
+        e.target.disabled = true;
+      }
+    });
+
+    
+    container.appendChild(card);
+  });
+});
+
+fetch("https://api.themoviedb.org/3/movie/${movieId}?language=en-US")
+.then(response => {
+  
+  if(!response.ok){
+    throw new Error("Cloud not Fetching resource");
+  }
+  return response.json();
+})
+.then(data => console.log(data.id))
+.catch(error => console.error(error));
+
+
+
+/*Test stuff*/
+const API_KEY = "a6c2afad200f84797a69b04f2d607b70";
+const API_OPTIONS = {
+	method: "GET",
+	headers: {
+		accept: "application/json",
+		Authorization:
+			"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmMyYWZhZDIwMGY4NDc5N2E2OWIwNGYyZDYwN2I3MCIsIm5iZiI6MTc1ODI5ODYzNy42MDUsInN1YiI6IjY4Y2Q4MjBkNjdiN2IzYzBjZDc0OGRkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.coFHqAS4Zbt2JJhnbbiJ8IqeNHEm7HiILnm9VTzLDq8",
+	},
+};
+
+// Genre ID's
+const genreMap = {
+	Horror: 27,
+	Action: 28,
+	Crime: 80,
+	Animation: 16,
+	"Science Fiction": 878,
+	Western: 37,
+	Drama: 18,
+	Family: 10751,
+};
+
+// Fetch movies for each genre
+async function loadMoviesByGenre() {
+	for (const [genreName, genreId] of Object.entries(genreMap)) {
+		const container = document.getElementById(`movieCards_${genreName}`);
+		if (!container) continue;
+
+		try {
+			const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&sort_by=popularity.desc&language=en-US&page=1`;
+			const response = await fetch(url, API_OPTIONS);
+			const data = await response.json();
+
+			console.log(data);
+
+			if (!data.results || data.results.length === 0) {
+				container.innerHTML = `<p class="text-muted">No movies found for ${genreName}.</p>`;
+				continue;
+			}
+
+			// Generate movie cards
+			container.innerHTML = data.results
+				.slice(0, 6)
+				.map(
+					(movie) => `
+					<div class="movie-card">
+						<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+							 alt="${movie.title}" class="movie-poster">
+						<h5 class="movie-title">${movie.title}</h5>
+						<p class="movie-year">${movie.release_date?.split("-")[0] || "N/A"}</p>
+						<button class="btn btn-sm btn-outline-light" 
+							onclick='addToWatchlist(${JSON.stringify({
+								id: movie.id,
+								title: movie.title,
+								image: "https://image.tmdb.org/t/p/w500${movie.poster_path}",
+								year: movie.release_date?.split("-")[0] || "N/A",
+								rating: movie.vote_average,
+								genre: genreName,
+								descirption: movie.overview,
+							})})'>
+							+ Watchlist
+						</button>
+					</div>
+				`
+				)
+				.join("");
+		} catch (error) {
+			console.error(`Error loading ${genreName} movies:`, error);
+			container.innerHTML = <p class="text-danger">Failed to load ${genreName} movies.</p>;
 		}
-	});
-})();
+	}
+}
+
+// Run only on movie library page
+if (window.location.pathname.includes("(c)movieLibraryPage.html")) {
+	loadMoviesByGenre();
+}
+
+
