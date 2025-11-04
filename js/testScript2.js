@@ -1088,6 +1088,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&sort_by=popularity.desc&language=en-US&page=1`;
 				console.log(`Fetching ${genreName} movies with URL: ${url}`);
 				const response = await fetch(url, API_OPTIONS);
+				console.log(response);
 				console.log(`Response status for ${genreName}: ${response.status}`);
 
 				if (!response.ok)
@@ -1098,11 +1099,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 				if (!data.results || data.results.length === 0) {
 					console.warn(`No movies found for ${genreName}`);
-					container.innerHTML = `<p class="text-muted">No movies found for ${genreName}.</p>`;
-					continue;
-				}
-
-				if (!data.results || data.results.length === 0) {
 					container.innerHTML = `<p class="text-muted">No movies found for ${genreName}.</p>`;
 					continue;
 				}
