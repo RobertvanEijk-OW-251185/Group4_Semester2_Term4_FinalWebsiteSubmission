@@ -680,6 +680,10 @@ input:valid {
 	color: var(--white);
 }
 
+.navbar-brand:hover {
+	color: var(--primary-blue);
+}
+
 .navLooks {
 	background: var(--bg-card);
 	backdrop-filter: blur(20px);
