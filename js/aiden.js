@@ -414,15 +414,15 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	});
 
-	fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`)
-		.then((response) => {
-			if (!response.ok) {
-				throw new Error("Cloud not Fetching resource");
-			}
-			return response.json();
-		})
-		.then((data) => console.log(data.id))
-		.catch((error) => console.error(error));
+	// fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`)
+	// 	.then((response) => {
+	// 		if (!response.ok) {
+	// 			throw new Error("Cloud not Fetching resource");
+	// 		}
+	// 		return response.json();
+	// 	})
+	// 	.then((data) => console.log(data.id))
+	// 	.catch((error) => console.error(error));
 
 	/*Test stuff*/
 	const API_KEY = "a6c2afad200f84797a69b04f2d607b70";

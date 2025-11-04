@@ -1,3 +1,8 @@
+/* ==============================================================================
+   GLOBAL STYLES (Shared by all team members)
+   Description: Defines global resets, color palette, typography, and body styles 
+   used across all pages for consistent styling.
+   ============================================================================== */
 * {
 	margin: 0;
 	padding: 0;
@@ -68,7 +73,11 @@ body {
 	overflow-x: hidden;
 }
 
-/* Background */
+/* =========================================================================
+   BACKGROUND STYLES (Rene)
+   Description: Styles for the fixed background overlay and pattern, creating a 
+   dark gradient with subtle radial effects for visual depth across all pages.
+   ========================================================================= */
 .background-container {
 	position: fixed;
 	top: 0;
@@ -115,7 +124,13 @@ body {
 		);
 }
 
-/* Sign In/Sign Up Page Start */
+/* ==============================================================================
+   SIGN IN/SIGN UP PAGE STYLES (Rene)
+   Description: Styles for the authentication page, including the main container, 
+   form layouts, input fields, buttons, and custom alert system for user 
+   interaction during sign-in and sign-up processes.
+   ============================================================================== */
+
 /* Main Container */
 .main-container {
 	display: flex;
@@ -412,7 +427,12 @@ input::placeholder {
 	letter-spacing: 2px;
 }
 
-/* Footer */
+/* =========================================================================
+   FOOTER STYLES (Shared by all team members. Made by Rene)
+   Description: Styles for the footer section, including copyright text and 
+   navigation links, used consistently across all pages.
+   ========================================================================= */
+
 .footer {
 	padding: 20px 40px;
 	background: rgba(0, 0, 0, 0.8);
@@ -443,6 +463,12 @@ input::placeholder {
 .footer-links a:hover {
 	color: var(--primary-blue);
 }
+
+/* ======================================================================================
+   VALIDATION AND ALERT STYLES (Rene)
+   Description: Styles for form validation messages and custom alerts, used to 
+   provide feedback on user input and authentication status on the sign-in/sign-up page.
+   ====================================================================================== */
 
 /* Validation Styles */
 .error-message {
@@ -577,7 +603,12 @@ input:valid {
 	background: var(--dark-gray);
 }
 
-/* Animations */
+/* ===============================================================================
+   ANIMATION STYLES (Shared by all team members. Made by Robert.)
+   Description: Keyframe animations for fade-in effects, used in forms and alerts 
+   to enhance user experience with smooth transitions.
+   =============================================================================== */
+
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
@@ -598,7 +629,12 @@ input:valid {
 	}
 }
 
-/* Responsive Design */
+/* =============================================================================
+   RESPONSIVE DESIGN FOR AUTH PAGE (Rene)
+   Description: Media queries to adjust the authentication container, logo, and 
+   form elements for smaller screens, ensuring usability on mobile devices.
+   ============================================================================= */
+
 @media (max-width: 768px) {
 	.auth-container {
 		padding: 30px 20px;
@@ -648,9 +684,13 @@ input:valid {
 		font-size: 1.2rem;
 	}
 }
-/* Sign In/Sign Up Page End */
 
-/* Navbar */
+/* ============================================================================
+   NAVBAR STYLES (Shared by all team members. Made by Robert)
+   Description: Styles for the navigation bar, including logo, search bar, and 
+   navigation links, used consistently across all pages for site navigation.
+   ============================================================================ */
+
 .navBack {
 	width: 100%;
 	background: var(--bg-dark);
@@ -709,9 +749,12 @@ form input::placeholder {
 	border-color: var(--primary-blue) !important;
 	box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
 }
-/* Navbar End */
 
-/* Footer Start */
+/* ==============================================================================
+   FOOTER STYLES REPEATED (Shared by all team members)
+   Description: Additional footer styles to ensure it stays at the bottom of the 
+   page with a consistent dark theme and hover effects for links.
+   ============================================================================== */
 
 footer {
 	position: relative;
@@ -725,9 +768,11 @@ footer {
 	margin-top: auto;
 }
 
-/* Footer End */
-
-/* Home Page Start */
+/* ============================================================================
+   HOME PAGE STYLES (Robert)
+   Description: Styles for the homepage, including the hero carousel, welcome 
+   banner, and movie card layouts for top-rated and popular sections.
+   ============================================================================ */
 
 /* Auto playing carousel */
 h5 {
@@ -797,7 +842,6 @@ h5 {
 	align-items: center;
 	height: 60%;
 	z-index: 2;
-
 	text-align: left;
 	margin-left: 5%;
 	max-width: 700px;
@@ -831,7 +875,6 @@ h5 {
 	background-color: var(--primary-blue);
 	transform: scale(1.2);
 	box-shadow: 0 0 10px var(--primary-blue);
-
 	width: 80px;
 	height: 14px;
 }
@@ -847,12 +890,10 @@ h5 {
 	margin: 20px;
 	margin-top: 50px;
 	text-align: center;
-
 	width: 60%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -864,59 +905,54 @@ h5 {
 }
 
 /* Movie Cards */
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
 
-.movieCard {
+.movieCard,
+.movieCardPopular,
+.movie-card {
 	background: var(--bg-card);
 	backdrop-filter: blur(20px);
-	border-radius: 20px;
+	border-radius: 25px !important;
 	padding: 5px;
 	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 	border: 1px solid rgba(255, 255, 255, 0.1);
-	margin: 15px;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	cursor: pointer;
-
-	width: 280px;
+	width: 280px; /* 4 columns in desktop (1200px / (280px + 20px) ≈ 4) Did not work :((((((((*/
 	height: 400px;
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	position: relative;
+	margin-bottom: 20px;
 }
 
-.movieCardPopular {
-	background: var(--bg-card);
-	backdrop-filter: blur(20px);
-	border-radius: 20px;
-	padding: 5px;
-	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	margin: 15px;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	cursor: pointer;
-
-	width: 280px;
-	height: 400px;
-}
-
-.movieCard img {
+.movieCard img,
+.movieCardPopular img,
+.movie-card img {
 	width: 100%;
 	height: 100%;
-	object-fit: fill;
+	object-fit: cover;
 	border-radius: 20px;
 }
 
-.movieCardPopular img {
-	width: 100%;
-	height: 100%;
-	object-fit: fill;
-	border-radius: 20px;
-}
-
-.card-body {
+.card-body,
+.movie-card-body {
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	height: 100%;
+	height: auto;
+	position: relative;
 	z-index: 2;
-	margin-top: -350px;
+	/* margin-top: -100px; */
+	padding: 10px;
 }
 
 .cardTextBackground {
@@ -924,17 +960,137 @@ h5 {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 50%;
 	background: linear-gradient(
 		to top,
 		rgba(10, 10, 10, 1) 0%,
 		rgba(10, 10, 10, 0.85) 70%,
 		rgba(10, 10, 10, 0) 100%
 	);
-	/* background: #000000; */
-	/* border: 2px solid var(--primary-blue); */
 	border-radius: 0 0 20px 20px;
 	z-index: 1;
+}
+
+.card-title {
+	font-size: 1.1rem;
+	color: var(--light-blue);
+	margin-bottom: 5px;
+}
+
+.card-text {
+	font-size: 0.9rem;
+	color: var(--light-blue);
+	margin-bottom: 10px;
+}
+
+.movieCardButtons {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	z-index: 2;
+}
+
+.viewDetailsBtn,
+.addToWatchlistBtn,
+.removeBtn {
+	background: var(--primary-blue);
+	color: var(--white);
+	border: none;
+	padding: 5px 20px;
+	border-radius: 25px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	letter-spacing: 1px;
+	font-size: 0.9rem;
+}
+
+.addToWatchlistBtn {
+	background: var(--success-green);
+}
+
+.removeBtn {
+	border: 1px solid var(--error-red);
+	background: transparent;
+}
+
+.viewDetailsBtn:hover,
+.addToWatchlistBtn:hover,
+.removeBtn:hover {
+	background: var(--dark-gray);
+}
+
+/* ==============================================================================
+   RESPONSIVE DESIGN FOR HOME PAGE (Robert)
+   Description: Media queries to adjust movie card sizes and layouts for tablet 
+   and mobile devices, ensuring a responsive grid layout.
+   (Could not get responsive to work for tablet mode :( )
+   (Responsive works mostly for mobile :( )
+   ============================================================================== */
+
+@media (max-width: 500px) {
+	/* Played around with max-width: */
+	.cardcontainer {
+		gap: 20px;
+		justify-content: space-between;
+	}
+	.movieCard,
+	.movieCardPopular,
+	.movie-card {
+		width: calc(
+			33.33% - 14px
+		); /* 3 columns: (100% - 40px gap) / 3 (I tried to math it out again...)*/
+		height: 360px; /* Smaller height for tablet maybe?? (also did not work)*/
+	}
+	.card-body,
+	.movie-card-body {
+		margin-top: -90px;
+		padding: 8px;
+	}
+	.card-title {
+		font-size: 1rem;
+	}
+	.card-text {
+		font-size: 0.8rem;
+	}
+	.viewDetailsBtn,
+	.addToWatchlistBtn,
+	.removeBtn {
+		padding: 4px 15px;
+		font-size: 0.8rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.cardcontainer {
+		gap: 15px;
+		justify-content: center;
+	}
+	.movieCard,
+	.movieCardPopular,
+	.movie-card {
+		width: calc(50% - 10px);
+		height: 240px;
+	}
+	.card-body,
+	.movie-card-body {
+		margin-top: -70px;
+		padding: 6px;
+	}
+	.card-title {
+		font-size: 0.8rem;
+	}
+	.card-text {
+		font-size: 0.7rem;
+	}
+	.viewDetailsBtn,
+	.addToWatchlistBtn,
+	.removeBtn {
+		padding: 3px 12px;
+		font-size: 0.7rem;
+	}
 }
 
 .sectionTitle {
@@ -983,107 +1139,123 @@ h5 {
 .card-title,
 .card-text {
 	color: var(--light-blue);
-} /* Home Page End */
-
-/* .background-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(
-		135deg,
-		rgba(10, 10, 10, 0.95) 0%,
-		rgba(20, 20, 20, 0.9) 50%,
-		rgba(30, 30, 30, 0.85) 100%
-	);
 }
 
-.background-pattern {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: radial-gradient(
-			circle at 20% 80%,
-			rgba(37, 99, 235, 0.1) 0%,
-			transparent 50%
-		),
-		radial-gradient(
-			circle at 80% 20%,
-			rgba(37, 99, 235, 0.1) 0%,
-			transparent 50%
-		),
-		radial-gradient(
-			circle at 40% 40%,
-			rgba(255, 255, 255, 0.05) 0%,
-			transparent 50%
-		);
-} */
+/* ======================================================================================
+   FILTER SEARCH STYLES (Aiden)
+   Description: Styles for the movie library page's filter search section, 
+   including input field, genre list, and filter button for genre-based movie filtering.
+   ====================================================================================== */
 
-/* Filter Button*/
-/* #filterActionBtn {
-	background-color: #007bff;
-	color: white;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 20px;
-	font-size: 14px;
-	cursor: pointer;
-	transition: background-color 0.3s;
-	width: 150px;
-}
-
-#filterActionBtn:hover {
-	background-color: #0069d9;
-} */
-
-/* Home Page Filter */
-/* .searchFilter {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	background-color: #ffffff;
-	box-shadow: 0 6px 8px rgba(0, 0, 0.1);
+.searchFilter {
+	position: relative;
+	margin: 40px auto;
+	background: var(--bg-card);
+	backdrop-filter: blur(20px);
 	width: 30%;
-	padding: 20px 15px;
-	text-align: Center;
+	min-width: 280px;
+	padding: 20px;
+	text-align: center;
+	border-radius: 20px;
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
+
 .searchFilter h1 {
+	font-size: 2rem;
 	margin-bottom: 20px;
-	font-family: sans-serif;
-	font-size: 2.2rem;
 	text-transform: uppercase;
+	color: var(--white);
 }
 
 .searchFilter input {
-	width: calc(100%-16px);
-	padding: 10px 8px;
-	font-size: 1.2rem;
-	margin-bottom: 20px;
+	width: 100%;
+	padding: 10px;
+	font-size: 1.1rem;
+	margin-bottom: 15px;
+	border-radius: 12px;
+	border: 1px solid var(--primary-blue);
+	background: var(--bg-dark);
+	color: var(--white);
 }
+
+.searchFilter input::placeholder {
+	color: var(--light-blue);
+}
+
 .searchFilter ul {
 	list-style: none;
-	width: 100%;
-	background-color: rgb(219, 219, 219);
+	padding: 0;
 }
 
 .searchFilter ul li a {
-	font-size: 20px;
-	color: blue;
+	display: block;
+	padding: 8px 10px;
+	font-size: 1rem;
+	color: var(--light-blue);
 	text-decoration: none;
-	font-family: sans-serif;
+	border-radius: 12px;
+	transition: all 0.3s ease;
 }
 
 .searchFilter ul li a:hover {
-	color: #0a0a0a;
-} */
+	background: var(--primary-blue);
+	color: var(--white);
+}
 
-/* =======================
-   MOVIE CARDS
-======================= */
+.addToWatchlistBtn {
+	background: var(--success-green) !important;
+	color: var(--white) !important;
+	border: none !important;
+	padding: 5px 20px !important;
+	border-radius: 25px !important;
+	font-weight: 600 !important;
+	cursor: pointer !important;
+	transition: all 0.3s ease !important;
+	letter-spacing: 1px !important;
+}
+
+/* Filter Button */
+#filterActionBtn {
+	background: var(--primary-blue);
+	color: var(--white);
+	border: none;
+	padding: 10px 20px;
+	border-radius: 25px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin: 20px auto;
+	display: block;
+}
+
+#filterActionBtn:hover {
+	background: var(--info-blue);
+}
+
+/* ============================================================================
+   WATCHLIST STYLES (Mandre)
+   Description: Styles for the watchlist page, including container and text 
+   styling for displaying the user's saved movies.
+   ============================================================================ */
+
+.watchlisttext {
+	margin: 40px auto;
+	width: 95%;
+}
+
+#watchlistContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+}
+
+/* =========================================================================
+   MOVIE SECTION STYLES (Aiden)
+   Description: Styles for the movie library page's genre sections and movie 
+   cards, organizing movies by genre with a consistent card layout.
+   ========================================================================= */
+
 .movie-section,
 .movie-sectiond {
 	margin: 40px auto;
@@ -1160,113 +1332,23 @@ h5 {
 }
 
 .viewDetailsBtn {
-	background: var(--primary-blue);
-	color: var(--white);
-	border: none;
-	padding: 5px 20px;
-	border-radius: 25px;
-	font-weight: 600;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	letter-spacing: 1px;
+	background: var(--primary-blue) !important;
+	color: var(--white) !important;
+	border: none !important;
+	padding: 5px 20px !important;
+	border-radius: 25px !important;
+	font-weight: 600 !important;
+	cursor: pointer !important;
+	transition: all 0.3s ease !important;
+	letter-spacing: 1px !important;
 }
 
-/* =======================
-   FILTER SEARCH
-======================= */
-.searchFilter {
-	position: relative;
-	margin: 40px auto;
-	background: var(--bg-card);
-	backdrop-filter: blur(20px);
-	width: 30%;
-	min-width: 280px;
-	padding: 20px;
-	text-align: center;
-	border-radius: 20px;
-	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-}
+/* =========================================================================
+   RESPONSIVE DESIGN FOR MOVIE LIBRARY AND WATCHLIST (Aiden, Mandre)
+   Description: Media queries to adjust movie card sizes and filter search width 
+   for smaller screens, ensuring usability on tablets and mobiles.
+   ========================================================================= */
 
-.searchFilter h1 {
-	font-size: 2rem;
-	margin-bottom: 20px;
-	text-transform: uppercase;
-	color: var(--white);
-}
-
-.searchFilter input {
-	width: 100%;
-	padding: 10px;
-	font-size: 1.1rem;
-	margin-bottom: 15px;
-	border-radius: 12px;
-	border: 1px solid var(--primary-blue);
-	background: var(--bg-dark);
-	color: var(--white);
-}
-
-.searchFilter input::placeholder {
-	color: var(--light-blue);
-}
-
-.searchFilter ul {
-	list-style: none;
-	padding: 0;
-}
-
-.searchFilter ul li a {
-	display: block;
-	padding: 8px 10px;
-	font-size: 1rem;
-	color: var(--light-blue);
-	text-decoration: none;
-	border-radius: 12px;
-	transition: all 0.3s ease;
-}
-
-.searchFilter ul li a:hover {
-	background: var(--primary-blue);
-	color: var(--white);
-}
-
-/* =======================
-   FILTER BUTTON
-======================= */
-#filterActionBtn {
-	background: var(--primary-blue);
-	color: var(--white);
-	border: none;
-	padding: 10px 20px;
-	border-radius: 25px;
-	font-size: 1rem;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	margin: 20px auto;
-	display: block;
-}
-
-#filterActionBtn:hover {
-	background: var(--info-blue);
-}
-
-/* =======================
-   WATCHLIST CONTAINER
-======================= */
-.watchlisttext {
-	margin: 40px auto;
-	width: 95%;
-}
-
-#watchlistContainer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 20px;
-}
-
-/* =======================
-   RESPONSIVE
-======================= */
 @media (max-width: 768px) {
 	.searchFilter {
 		width: 60%;
@@ -1284,5 +1366,246 @@ h5 {
 	.movieCard {
 		width: 180px;
 		height: 280px;
+	}
+}
+
+/* ==============================================================================
+   INDIVIDUAL MOVIE PAGE STYLES (Mandre)
+   Description: Styles for the individual movie page, including the hero section 
+   with a blurred backdrop, movie poster, and detailed movie information layout.
+   ============================================================================== */
+
+.card {
+	position: relative;
+	width: 250px;
+	min-height: 420px;
+	background-color: #1e293b;
+	color: #f8fafc;
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.cardimg {
+	width: 100%;
+	height: 65%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.card-content {
+	padding: 12px;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.card-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-bottom: 6px;
+	color: #f1f5f9;
+}
+
+.card-text {
+	font-size: 0.9rem;
+	color: #cbd5e1;
+	line-height: 1.4;
+}
+
+.btn-primary {
+	background-color: #0284c7;
+	border: none;
+	width: 100%;
+	height: 45px;
+	color: #f8fafc;
+	font-weight: 600;
+	border-radius: 0 0 12px 12px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-primary:hover {
+	background-color: #0369a1;
+}
+
+/* Movie Hero Section */
+.moviehero {
+	position: relative;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.movie-backdrop {
+	position: absolute;
+	inset: 0;
+	background: url("poster.jpg") center/cover no-repeat;
+	filter: blur(40px) brightness(0.35);
+	transform: scale(1.2);
+	z-index: 0;
+}
+
+.movie-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0.85) 30%,
+		rgba(0, 0, 0, 0.4) 100%
+	);
+	z-index: 1;
+}
+
+.moviecontent {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	gap: 60px;
+	max-width: 1400px;
+	padding: 60px;
+	width: 100%;
+}
+
+.movieposter {
+	width: 400px;
+	height: 600px;
+	border-radius: 15px;
+	object-fit: cover;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+	transition: transform 0.3s ease;
+}
+
+.movieposter:hover {
+	transform: scale(1.05);
+}
+
+.moviedetails {
+	flex: 1;
+	max-width: 650px;
+}
+
+.movietitle {
+	font-size: 3.5rem;
+	font-weight: 700;
+	margin-bottom: 15px;
+	color: #f8fafc;
+}
+
+.moviemeta {
+	color: #93c5fd;
+	font-size: 1.3rem;
+	margin-bottom: 25px;
+}
+
+.moviedescription {
+	font-size: 1.15rem;
+	line-height: 1.8;
+	color: #e2e8f0;
+	margin-bottom: 40px;
+}
+
+.watchlistbtn {
+	background: linear-gradient(90deg, #0284c7, #0ea5e9);
+	border: none;
+	color: white;
+	padding: 16px 36px;
+	font-size: 1.3rem;
+	font-weight: 600;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.watchlistbtn:hover {
+	transform: scale(1.08);
+	background: linear-gradient(90deg, #0ea5e9, #0284c7);
+}
+
+.watchlisttext {
+	color: floralwhite;
+	margin: 40px auto;
+	width: 95%;
+}
+
+/* ===============================================================================
+   RESPONSIVE DESIGN FOR INDIVIDUAL MOVIE PAGE (Mandre)
+   Description: Media queries to adjust the layout of the individual movie page 
+   for smaller screens, ensuring a centered and compact design on mobile devices.
+   =============================================================================== */
+
+@media (max-width: 900px) {
+	.moviecontent {
+		flex-direction: column;
+		text-align: center;
+		gap: 30px;
+		padding: 30px;
+	}
+
+	.movieposter {
+		width: 70%;
+		height: auto;
+	}
+
+	.movietitle {
+		font-size: 2.5rem;
+	}
+
+	.moviedescription {
+		font-size: 1rem;
+	}
+}
+
+/* Tablet and below */
+@media (max-width: 900px) {
+	.moviecontent {
+		flex-direction: column;
+		text-align: center;
+		gap: 30px;
+		padding: 30px;
+	}
+	.movieposter {
+		width: 70%;
+		height: auto;
+	}
+	.movietitle {
+		font-size: 2.5rem;
+	}
+	.moviedescription {
+		font-size: 1rem;
+	}
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+	.moviecontent {
+		padding: 20px;
+	}
+	.movieposter {
+		width: 90%;
+	}
+	.movietitle {
+		font-size: 1.8rem;
+	}
+	.moviedescription {
+		font-size: 0.9rem;
 	}
 }
