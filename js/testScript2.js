@@ -1,163 +1,167 @@
 // I restructured all the different JavaScript files to fit into one singular  JavaScript File Which is this one. (-Robert)
 // Original JavaScript files that were in the repository still remain. They are labelled, mandre.js, aiden.js and aiden copy.js. (-Robert)
 
+const currentPage = window.location.pathname;
+
 // ===========================================
 //   SIGN IN / SIGN UP PAGE (Rene)
 // ===========================================
 $(document).ready(function () {
-    console.log("Document ready - Form switching initialized");
+	console.log("Document ready - Form switching initialized");
 
-    // Custom Alert System
-    function showAlert(title, message, type = "info") {
-        const alert = $("#custom-alert");
-        const alertIcon = alert.find(".alert-icon");
-        const alertTitle = alert.find(".alert-title");
-        const alertMessage = alert.find(".alert-message");
+	// Custom Alert System
+	function showAlert(title, message, type = "info") {
+		const alert = $("#custom-alert");
+		const alertIcon = alert.find(".alert-icon");
+		const alertTitle = alert.find(".alert-title");
+		const alertMessage = alert.find(".alert-message");
 
-        // Set content
-        alertTitle.text(title);
-        alertMessage.text(message);
+		// Set content
+		alertTitle.text(title);
+		alertMessage.text(message);
 
-        // Set icon and color based on type
-        alertIcon.removeClass("success error warning info");
-        switch (type) {
-            case "success":
-                alertIcon.addClass("success").html("✓");
-                break;
-            case "error":
-                alertIcon.addClass("error").html("✕");
-                break;
-            case "warning":
-                alertIcon.addClass("warning").html("!");
-                break;
-            case "info":
-                alertIcon.addClass("info").html("i");
-                break;
-        }
+		// Set icon and color based on type
+		alertIcon.removeClass("success error warning info");
+		switch (type) {
+			case "success":
+				alertIcon.addClass("success").html("✓");
+				break;
+			case "error":
+				alertIcon.addClass("error").html("✕");
+				break;
+			case "warning":
+				alertIcon.addClass("warning").html("!");
+				break;
+			case "info":
+				alertIcon.addClass("info").html("i");
+				break;
+		}
 
-        // Show alert
-        alert.addClass("show");
-    }
+		// Show alert
+		alert.addClass("show");
+	}
 
-    // Close alert
-    $(".alert-close-btn").on("click", function () {
-        $("#custom-alert").removeClass("show");
-    });
+	// Close alert
+	$(".alert-close-btn").on("click", function () {
+		$("#custom-alert").removeClass("show");
+	});
 
-    // Close alert when clicking outside
-    $("#custom-alert").on("click", function (e) {
-        if (e.target === this) {
-            $(this).removeClass("show");
-        }
-    });
+	// Close alert when clicking outside
+	$("#custom-alert").on("click", function (e) {
+		if (e.target === this) {
+			$(this).removeClass("show");
+		}
+	});
 
-    // FORM SWITCHING - FIXED
-    $("#switch-to-signup").on("click", function (e) {
-        e.preventDefault();
-        console.log("Switching to SIGN UP form");
-        $("#signin-form").removeClass("active");
-        $("#signup-form").addClass("active");
-        clearValidationMessages();
-    });
+	// FORM SWITCHING - FIXED
+	$("#switch-to-signup").on("click", function (e) {
+		e.preventDefault();
+		console.log("Switching to SIGN UP form");
+		$("#signin-form").removeClass("active");
+		$("#signup-form").addClass("active");
+		clearValidationMessages();
+	});
 
-    $("#switch-to-signin").on("click", function (e) {
-        e.preventDefault();
-        console.log("Switching to SIGN IN form");
-        $("#signup-form").removeClass("active");
-        $("#signin-form").addClass("active");
-        clearValidationMessages();
-    });
+	$("#switch-to-signin").on("click", function (e) {
+		e.preventDefault();
+		console.log("Switching to SIGN IN form");
+		$("#signup-form").removeClass("active");
+		$("#signin-form").addClass("active");
+		clearValidationMessages();
+	});
 
-    // Clear validation messages
-    function clearValidationMessages() {
-        $(".error-message").hide();
-        $(".success-message").hide();
-        $(".warning-message").hide();
-        $(".info-message").hide();
-    }
+	// Clear validation messages
+	function clearValidationMessages() {
+		$(".error-message").hide();
+		$(".success-message").hide();
+		$(".warning-message").hide();
+		$(".info-message").hide();
+	}
 
-    // Real-time password confirmation validation
-    $("#signup-confirm-password").on("input", function () {
-        const password = $("#signup-password").val();
-        const confirmPassword = $(this).val();
+	// Real-time password confirmation validation
+	$("#signup-confirm-password").on("input", function () {
+		const password = $("#signup-password").val();
+		const confirmPassword = $(this).val();
 
-        if (confirmPassword && password !== confirmPassword) {
-            showValidationMessage(
-                $("#signup-confirm-password-error"),
-                "Passwords do not match",
-                "error"
-            );
-        } else if (confirmPassword && password === confirmPassword) {
-            showValidationMessage(
-                $("#signup-confirm-password-error"),
-                "Passwords match!",
-                "success"
-            );
-        } else {
-            $("#signup-confirm-password-error").hide();
-        }
-    });
+		if (confirmPassword && password !== confirmPassword) {
+			showValidationMessage(
+				$("#signup-confirm-password-error"),
+				"Passwords do not match",
+				"error"
+			);
+		} else if (confirmPassword && password === confirmPassword) {
+			showValidationMessage(
+				$("#signup-confirm-password-error"),
+				"Passwords match!",
+				"success"
+			);
+		} else {
+			$("#signup-confirm-password-error").hide();
+		}
+	});
 
-    // Real-time password length validation
-    $("#signup-password").on("input", function () {
-        const password = $(this).val();
+	// Real-time password length validation
+	$("#signup-password").on("input", function () {
+		const password = $(this).val();
 
-        if (password && password.length < 6) {
-            showValidationMessage(
-                $("#signup-password-error"),
-                "Password must be at least 6 characters",
-                "error"
-            );
-        } else if (password && password.length >= 6) {
-            showValidationMessage(
-                $("#signup-password-error"),
-                "Password strength: Good",
-                "success"
-            );
-        } else {
-            $("#signup-password-error").hide();
-        }
-    });
+		if (password && password.length < 6) {
+			showValidationMessage(
+				$("#signup-password-error"),
+				"Password must be at least 6 characters",
+				"error"
+			);
+		} else if (password && password.length >= 6) {
+			showValidationMessage(
+				$("#signup-password-error"),
+				"Password strength: Good",
+				"success"
+			);
+		} else {
+			$("#signup-password-error").hide();
+		}
+	});
 
-    // Show validation message
-    function showValidationMessage(element, message, type = "error") {
-        element.removeClass(
-            "error-message warning-message success-message info-message"
-        );
+	// Show validation message
+	function showValidationMessage(element, message, type = "error") {
+		element.removeClass(
+			"error-message warning-message success-message info-message"
+		);
 
-        switch (type) {
-            case "error":
-                element.addClass("error-message");
-                break;
-            case "warning":
-                element.addClass("warning-message");
-                break;
-            case "success":
-                element.addClass("success-message");
-                break;
-            case "info":
-                element.addClass("info-message");
-                break;
-        }
+		switch (type) {
+			case "error":
+				element.addClass("error-message");
+				break;
+			case "warning":
+				element.addClass("warning-message");
+				break;
+			case "success":
+				element.addClass("success-message");
+				break;
+			case "info":
+				element.addClass("info-message");
+				break;
+		}
 
-        element.text(message).show();
-    }
+		element.text(message).show();
+	}
 
-    console.log("Form switching is ready - Click SIGN UP/SIGN IN links to switch forms");
+	console.log(
+		"Form switching is ready - Click SIGN UP/SIGN IN links to switch forms"
+	);
 
-    // Store username in localStorage when signing up
-document.getElementById("signup-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    let username = document.getElementById("signup-email").value;
-    localStorage.setItem("userName", username);
-});
+	// Store username in localStorage when signing up
+	document.getElementById("signup-form").addEventListener("submit", (e) => {
+		e.preventDefault();
+		let username = document.getElementById("signup-email").value;
+		localStorage.setItem("userName", username);
+	});
 
-// Store username in localStorage when signing in  
-document.getElementById("signin-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    let username = document.getElementById("signin-email").value;
-    localStorage.setItem("userName", username);
-});
+	// Store username in localStorage when signing in
+	document.getElementById("signin-form").addEventListener("submit", (e) => {
+		e.preventDefault();
+		let username = document.getElementById("signin-email").value;
+		localStorage.setItem("userName", username);
+	});
 });
 
 // =====================
@@ -683,6 +687,52 @@ document.addEventListener("DOMContentLoaded", () => {
 		row.appendChild(movieObj.createCard(true));
 	});
 	watchlistContainer.appendChild(row);
+});
+
+// ================================
+//  INDIVIDUAL MOVIE PAGE WATCHLIST
+// ================================
+
+document.addEventListener("DOMContentLoaded", () => {
+	// Only runs on the individual movie page
+	if (!window.location.pathname.includes("(d)individualMoviePage.html")) return;
+
+	const movieId = new URLSearchParams(window.location.search).get("id");
+	if (!movieId) return;
+
+	// Grabbing buttons from HTML
+	const addBtn = document.getElementById("addToWatchlistBtn");
+	const removeBtn = document.getElementById("removeFromWatchlistBtn");
+
+	// Gets the current watchlist from localStorage
+	const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+	const isInWatchlist = watchlist.some((item) => item.id == movieId);
+
+	// Toggles the visbility initial button visibility
+	if (addBtn && removeBtn) {
+		addBtn.style.display = isInWatchlist ? "none" : "inline-block";
+	}
+
+	// Add to watchlist
+	addBtn.addEventListener("click", () => {
+		// Finds movie data from DOM
+		const movieData = {
+			id: Number(movieId),
+			title: document.getElementById("movieTitle")?.textContent || "",
+			description:
+				document.getElementById("movieDescription")?.textContent || "",
+			image: document.getElementById("movieImage")?.src || "",
+			year: document.getElementById("movieYear")?.textContent || "",
+			genre: document.getElementById("movieGenre")?.textContent || "",
+		};
+
+		// Adds it to the watchlist
+		const updatedList = [...watchlist, movieData];
+		localStorage.setItem("watchlist", JSON.stringify(updatedList));
+
+		// Toggles the add button
+		addBtn.style.display = "none";
+	});
 });
 
 // ======================================
