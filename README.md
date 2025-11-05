@@ -51,6 +51,8 @@ Chosen API:
 TMDB (The Movie DataBase)
 (https://developer.themoviedb.org/reference/intro/getting-started)
 
+The Movie Database. (n.d.). Getting Started – TMDb API. Retrieved November 5, 2025, from https://developer.themoviedb.org/docs/getting-started
+
 - Name: The Movie Database API (TMDB)
 
 - Description:
@@ -85,3 +87,8 @@ API (The Movie Database)
 -The Movie Database (TMDb). (n.d.). TMDb API [Data set]. The Movie Database (TMDb). https://www.themoviedb.org/
 API Documentation:
 -The Movie Database (TMDb). (n.d.). TMDb API documentation. The Movie Database (TMDb). https://developer.themoviedb.org/docs/getting-started
+
+Deployment done through Google's Firebase:
+
+Domain:
+https://dv-100-term4.web.app
