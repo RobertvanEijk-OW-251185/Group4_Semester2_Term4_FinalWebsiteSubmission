@@ -461,16 +461,21 @@ class Movies {
 			18: "Drama",
 			10751: "Family",
 		};
+		// If genre is a number (ID), map it to the genre name using genreMap
+		// If not found, default to "Unknown"
 		this.genre =
 			typeof genre === "number" ? genreMap[genre] || "Unknown" : genre;
 		this.rating = rating;
 	}
 
+	// Method to create a Bootstrap-style movie card
+	// isWatchlist determines styling if the card is displayed in watchlist
 	createCard(isWatchlist = false) {
+		// Create the main card div
 		const card = document.createElement("div");
 		card.className = `card ${
 			isWatchlist ? "movieCard" : "movieCardPopular"
-		} mx-auto`;
+		} mx-auto`; // Add styling classes based on if it's a movieCard or movieCardPopular
 		const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 		const isInWatchlist = watchlist.some((item) => item.id === this.id);
 
@@ -608,12 +613,19 @@ function removeFromWatchlist(movieId, cardElement) {
 		carouselInner.innerHTML = "";
 		carouselIndicators.innerHTML = "";
 
+		// Loop through each movie in the movies array
 		movies.forEach((movie, index) => {
+			// creates div for hero image carousel.
 			const itemDiv = document.createElement("div");
+			// Add the 'carousel-item' class to the div
+			// If this is the first movie (index 0), also add 'active' class
 			itemDiv.classList.add(
 				"carousel-item",
-				...(index === 0 ? ["active"] : [])
+				...(index === 0 ? ["active"] : []) // checks if first slide, if it's not... then returns empty array without active class.
 			);
+
+			// Set the inner HTML of the slide
+			// This includes the movie image and caption
 			itemDiv.innerHTML = `
         <img src="https://image.tmdb.org/t/p/original${
 					movie.backdrop_path
@@ -626,13 +638,17 @@ function removeFromWatchlist(movieId, cardElement) {
 							: "No description available."
 					}</p>
         </div>`;
+			// Append this slide to the main carousel container
 			carouselInner.appendChild(itemDiv);
-
+			// Create a button element for the carousel indicator (the dots/buttons at bottom)
 			const indicator = document.createElement("button");
 			indicator.type = "button";
+			// Set attributes to link this indicator to the carousel
 			indicator.setAttribute("data-bs-target", "#carouselExampleCaptions");
 			indicator.setAttribute("data-bs-slide-to", index);
+			// If this is the first slide, mark the indicator as active
 			if (index === 0) indicator.classList.add("active");
+			// Append the indicator button to the indicators container
 			carouselIndicators.appendChild(indicator);
 		});
 	} catch (error) {
@@ -768,19 +784,20 @@ function removeFromWatchlist(movieId, cardElement) {
 // //   MOVIE DETAILS PAGE (Mandre)
 // // ===============================
 // Fetches and displays detailed information for a specific movie for the individual movie page.
-// Checks for Movie Details Page
+
 // Fetch Movie Details
-// Gets movie details from TMDB API and updates the movie details page
 
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get("id");
-
+// Checks for Movie Details Page
 if (movieId && currentPage.includes("(d)individualMoviePage.html")) {
 	getMovieDetails();
 }
 
 async function getMovieDetails() {
+	// Gets movie details from TMDB API and updates the movie details page
 	if (!currentPage.includes("(d)individualMoviePage.html")) {
+		// warning that displays in console, when this runs outside of it's window
 		console.warn("getMovieDetails called on non-movie page. Skipping.");
 		return;
 	}
@@ -808,7 +825,7 @@ async function getMovieDetails() {
 			throw new Error(`Could not fetch movie details: ${response.status}`);
 		}
 		const movie = await response.json();
-
+		// get's elements form html based on their id's
 		const elements = {
 			title: document.getElementById("movieTitle"),
 			image: document.getElementById("movieImage"),
@@ -819,6 +836,7 @@ async function getMovieDetails() {
 			backdrop: document.querySelector(".movie-backdrop"),
 		};
 
+		// checks for missing elements in the html
 		if (
 			!elements.title ||
 			!elements.image ||
@@ -849,20 +867,22 @@ async function getMovieDetails() {
 		const buttonContainer = document.getElementById("watchlistButtonContainer");
 		if (buttonContainer) {
 			const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+			// checks if movie data is in local storag
 			const isInWatchlist = watchlist.some((item) => item.id === movie.id);
-
+			// Sets Display None on add to watchlist button and remove from watchlist button.
 			buttonContainer.innerHTML = `
-        <button id="addToWatchlistBtn" class="btn btn-primary addToWatchlistBtn roboto-p ${
-					isInWatchlist ? "d-none" : ""
-				}" data-id="${movie.id}">Add to Watchlist</button>
-        <button id="removeFromWatchlistBtn" class="btn removeBtn roboto-p ${
-					isInWatchlist ? "" : "d-none"
-				}" data-id="${movie.id}">Remove</button>
-      `;
+									<button id="addToWatchlistBtn" class="btn btn-primary addToWatchlistBtn roboto-p ${
+										isInWatchlist ? "d-none" : ""
+									}" data-id="${movie.id}">Add to Watchlist</button>
+									<button id="removeFromWatchlistBtn" class="btn removeBtn roboto-p ${
+										isInWatchlist ? "" : "d-none"
+									}" data-id="${movie.id}">Remove</button>
+								`;
 
 			const addBtn = document.getElementById("addToWatchlistBtn");
 			const removeBtn = document.getElementById("removeFromWatchlistBtn");
-
+			// adds to watchlist
+			// if movie data in local storage. Add button display is set to none
 			if (addBtn) {
 				addBtn.addEventListener("click", () => {
 					addToWatchlist({
@@ -880,7 +900,8 @@ async function getMovieDetails() {
 					removeBtn.classList.remove("d-none");
 				});
 			}
-
+			// removes from watchlist
+			// if movie data is not in local storage. Remove button's display is set to none
 			if (removeBtn) {
 				removeBtn.addEventListener("click", () => {
 					removeFromWatchlist(movie.id);
