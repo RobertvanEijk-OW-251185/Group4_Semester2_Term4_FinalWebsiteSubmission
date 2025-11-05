@@ -426,69 +426,68 @@ input::placeholder {
 	color: var(--primary-blue);
 	letter-spacing: 2px;
 }
-/* 
+/* Google Sign In Button Styles */
+.google-signin-container {
+    margin: 25px 0;
+}
 
+.google-signin-btn {
+    width: 100%;
+    padding: 15px;
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
 
+.google-signin-btn:hover {
+    background: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
 
+.google-signin-btn:active {
+    transform: translateY(0);
+}
 
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
 
+/* Divider for Google Sign In */
+.google-signin-container .divider {
+    position: relative;
+    margin-bottom: 20px;
+}
 
+.google-signin-container .divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- */
-
+.google-signin-container .divider span {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    padding: 0 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 /* =========================================================================
    FOOTER STYLES (Shared by all team members. Made by Rene)
    Description: Styles for the footer section, including copyright text and 
